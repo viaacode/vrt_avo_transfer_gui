@@ -1,0 +1,49 @@
+{
+  "name": "mijn-viaa",
+  "version": "1.0.0",
+  "description": "Portal site for VIAA partners",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha server/test",
+    "prestart": "grunt",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osoc16/viaa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/osoc16/viaa/issues"
+  },
+  "homepage": "https://github.com/osoc16/viaa#readme",
+  "dependencies": {
+    "basscss": "^8.0.1",
+    "body-parser": "^1.14.0",
+    "chart.js": "^2.1.6",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.4.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "moment": "^2.14.1",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-saml": "^0.15.0",
+    "request": "^2.72.0",
+    "serve-favicon": "^2.3.0",
+    "underscore": "^1.8.3",
+    "vue": "^1.0.26"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "supertest": "^1.2.0"
+  }
+}

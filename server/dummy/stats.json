@@ -1,0 +1,35 @@
+{
+  "registered": {
+    "video": 81742,
+    "audio": 64668,
+    "film": 2804,
+    "paper": 55859,
+    "total": 205073
+  },
+  "archived": {
+    "bytes": 1479339198063147,
+    "amount": 581166
+  },
+  "digitised": {
+    "video": {
+      "ok": 32448,
+      "nok": 583
+    },
+    "audio": {
+      "ok": 36563,
+      "nok": 370
+    },
+    "film": {
+      "ok": 3,
+      "nok": 0
+    },
+    "paper": {
+      "ok": 69014,
+      "nok": 953
+    },
+    "total": {
+      "ok": 69014,
+      "nok": 953
+    }
+  }
+}

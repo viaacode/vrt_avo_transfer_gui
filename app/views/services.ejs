@@ -1,0 +1,39 @@
+<div id="services-app" v-cloak>
+    <div class="container">
+        <!-- Commented out links to detail pages since they are redundant at the moment
+
+        <div class="services-titles">
+                        <span v-for="service in serviceslist">
+                            <a href="detail#{{ service.service}}" @click="reload" class="services-titles-service">{{ service.service }}</a>
+                        </span>
+        </div>
+        -->
+
+        <article class="service-item" v-for="service in serviceslist">
+            <div class="service-icon-container">
+                <img class="service-icon" v-bind:src="service.img" alt="{{ service.img_alt }}"/>
+            </div>
+            <div class="service-content">
+                <h1>{{{ service.title }}}</h1>
+                <p>{{{ service.description }}}</p>
+                <p>
+                    <!-- Commented out links to detail pages since they are redundant at the moment
+                    <a href="{{ service.link_info }}" class="btn btn-secondary">Meer informatie</a>
+                    -->
+                    <a href="{{ service.link_service }}" 
+                       v-if="service.available" 
+                       class="btn btn-secondary" target="_blank">
+                        <span class="icon-right"></span>&nbsp; Ga naar dienst
+                    </a>
+                    <a href="https://viaa.zendesk.com/hc/nl/requests/new"
+                       v-else
+                       class="btn btn-secondary"  target="_blank">
+                       <span class="icon-lock-open-alt"></span> &nbsp; Vraag toegang
+                    </a>
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <%- include('footer', {}); %>
+</div>

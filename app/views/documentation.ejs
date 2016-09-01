@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API documentation</title>
+</head>
+<body>
+    <h2>Format</h2>
+    <p>
+        This API uses the <a href="https://labs.omniti.com/labs/jsend">Jsend</a> format
+    </p>
+    <h2>Api routes</h2>
+    <p>
+        <dl>
+        <% routes.forEach(function(route){ %>
+        <dt><a href="<%= route.localPath.url %>"><%= route.localPath.title %> <%= route.localPath.extra %></a></dt>
+        <dd><a href="<%= route.toEndpoint.url %>"><%= route.toEndpoint.title %></a> <%= route.toEndpoint.extra %></dd>
+        <br/>
+        <% }); %>
+        </dl>
+    </p>
+</body>
+</html>

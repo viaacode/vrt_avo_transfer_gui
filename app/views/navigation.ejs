@@ -1,0 +1,20 @@
+<header>
+    <ul class="navigation">
+        <li class="logo"><a href="/"><img src="/public/assets/logo2.svg"></a></li>
+
+        <li class="menuitem"><a href="dashboard" class="mainlink <%- activePages['dashboard'] ? 'active' : '' %>">Dashboard</a></li>
+        <li class="menuitem"><a href="services"  class="mainlink <%- activePages['services']  ? 'active' : '' %>">Diensten</a></li>
+        <li class="menuitem"><a href="#"         class="mainlink <%- activePages['about']     ? 'active' : '' %>">Over</a></li>
+
+        <li class="menuitem-user right" onclick="showmenu()">
+           <div class="user">        
+                <span class="icon-user dropbtn"></span>
+           </div>
+           <div class="user-container" id="user-container-id">
+                <p>Welkom terug, <strong><%= username %></strong>!</p>
+                <a href="#">Account</a>
+                <a href="/logout">Log uit</a>
+           </div>
+        </li>    
+    </ul>
+</header>

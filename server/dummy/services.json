@@ -1,0 +1,82 @@
+{
+  "MAM": {
+    "service": "MAM",
+    "articles": [
+      {
+        "title": "Documentatie op zendesk"
+      },
+      {
+        "title": "Handleiding voor invoerders"
+      },
+      {
+        "title": "Si veteres ita miratur laudatque poetas"
+      },
+      {
+        "title": "Ut nihil anteferat, nihil illis comperet, errat"
+      },
+      {
+        "title": "Si quaedam nimis antique"
+      }
+    ]
+  },
+  "AMS": {
+    "service": "AMS",
+    "articles": [
+      {
+        "title": "Documentatie op zendesk"
+      },
+      {
+        "title": "Handleiding voor invoerders"
+      },
+      {
+        "title": "Si veteres ita miratur laudatque poetas"
+      },
+      {
+        "title": "Ut nihil anteferat, nihil illis comperet, errat"
+      },
+      {
+        "title": "Si quaedam nimis antique"
+      }
+    ]
+  },
+  "FTP": {
+    "service": "FTP",
+    "articles": [
+      {
+        "title": "Documentatie op zendesk"
+      },
+      {
+        "title": "Handleiding voor invoerders"
+      },
+      {
+        "title": "Si veteres ita miratur laudatque poetas"
+      },
+      {
+        "title": "Ut nihil anteferat, nihil illis comperet, errat"
+      },
+      {
+        "title": "Si quaedam nimis antique"
+      }
+    ],
+    "DBS": {
+      "service": "DBS",
+      "articles": [
+        {
+          "title": "Documentatie op zendesk"
+        },
+        {
+          "title": "Handleiding voor invoerders"
+        },
+        {
+          "title": "Si veteres ita miratur laudatque poetas"
+        },
+        {
+          "title": "Ut nihil anteferat, nihil illis comperet, errat"
+        },
+        {
+          "title": "Si quaedam nimis antique"
+        }
+      ]
+    }
+  }
+}
