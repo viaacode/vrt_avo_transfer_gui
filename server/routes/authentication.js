@@ -37,8 +37,21 @@ module.exports = function (app, config, passport) {
   );
 
   app.get('/logout', function (req, res) {
+    // we only have the nameID
+    req.user.nameIDFormat = '';
+
+
+    samlStrategy.logout(req, function(err, request){
+      if(!err){
+        //redirect to the IdP Logout URL
+        res.redirect(request);
+      }
+    });
+  });
+
+  app.get('/logout/callback', function (req, res) {
     req.logout();
-    res.redirect('https://idp-qas.viaa.be/module.php/core/authenticate.php?as=viaa-ldap&logout');
+    res.redirect('/');
   });
 
   // app.get('/Metadata',
