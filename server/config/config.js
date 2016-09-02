@@ -1,12 +1,11 @@
-var readFile = require('../util/read-file');
+  var readFile = require('../util/read-file');
 var path = require('path');
 var _ = require('underscore');
 
 function environment (name) {
   var parts = {
-    qas: [base, qas, authentication],
-    development: [base, dev],
-    dev_auth: [base, dev, authentication]
+    qas: [qas, authentication],
+    development: [qas]
   }[name];
 
   if (!parts) throw new Error('Environment not defined: ' + name);
@@ -44,54 +43,6 @@ var template = {
   passport: null
 };
 
-var base = {
-  // Mule endpoint
-  muleHost: 'http://foo',
-  // Map path to mule endpoints ()
-  endpoints: JSON.parse(readFile(pathFromServer('config/endpoints.json'))),
-  // used to map SAML data to available services
-  services: {
-    map: {
-      'mediahaven': 'MAM',
-      'amsweb': 'AMS',
-      'FTP': 'FTP',
-      'skryvweb': 'DBS'
-    },
-    // These services are always available (if logged in)
-    always: {
-      'FTP': 1
-    }
-  },
-  app: {
-    // used in console to tell which app is started
-    name: 'mijn.VIAA',
-    port: process.env.PORT || 1337,
-    sessionSecret: process.env.SESSION_SECRET || 'mijnVIAAetc'
-  },
-  // used to get the path to a file or folder
-  paths: {
-    server: pathFromServer,
-    app: pathFromApp
-  },
-  logErrors: true
-};
-
-var dev = {
-  // toggle to show api links on /api/docs
-  showApiDocs: true,
-  // replace all outgoing calls (eg. to Mule) by dummy data
-  dummyRequest: true,
-  // fake that these services are available when not logged in
-  fakeServicesAvailable: {"MAM": 1, "AMS": 1, "FTP": 1},
-  // enable api delay for testing graph loading
-  apiDelay: {
-    min: 0,
-    max: 1
-  },
-  // show extended error messages in api calls
-  showErrors: true
-};
-
 var qas = {
   // Mule endpoint
   muleHost: 'http://do-qas-esb-01.do.viaa.be:10005',
@@ -100,9 +51,21 @@ var qas = {
   // general app settings
   app: {
     // used in console to tell which app is started
-    name: 'mijn.VIAA',
+    name: 'VRT_AVO_TRANSFER',
     port: process.env.PORT || 80,
-    sessionSecret: process.env.SESSION_SECRET || 'mijnVIAAetc'
+    sessionSecret: process.env.SESSION_SECRET || 'VRT_AVO_TRANSFER'
+  },
+  paths: {
+    server: pathFromServer,
+    app: pathFromApp
+  },
+  services: {
+    map: {
+      'mediahaven': 'MAM',
+      'amsweb': 'AMS',
+      'FTP': 'FTP',
+      'skryvweb': 'DBS'
+    }
   },
   // show extended error messages in api calls
   showErrors: true

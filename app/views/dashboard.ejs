@@ -4,7 +4,7 @@
         <div class="col col-12 loader-airbox" v-show="!dataStats && dataErrors.length==0">
             <div class="loader">
                 <span class="icon-spin3 animate-spin"></span>       
-            </div>    
+            </div>
         </div>              
 
         <!-- dataStats errors -->
@@ -17,7 +17,7 @@
     </div>
 
     <div class="container nopadding">
-        <div class=" clearfix"  v-bind:class="{ 'bigstats-airbox' : !dataStats && dataErrors.length==0 }">
+        <div class="clearfix"  v-bind:class="{ 'bigstats-airbox' : !dataStats && dataErrors.length==0 }">
             <!-- Piechart part -->
             <div class="col col-12 md-col-7 pb7 pt4"
                  v-bind:class="{ 'border-right' : dataStats && dataErrors.length==0 }">  
@@ -52,133 +52,10 @@
                     </div>
                 </div>        
             </div>
-            
-            <!-- Big general stats -->
-            <div class="col col-12 md-col-5 general" v-if="dataStats"> 
-                <div class="col col-10 p3 stat">
-                    <div class="grey pt2">
-                        <span class="bigtext col">{{{ numberWithSpaces(dataStats.registered) }}}</span>
-                        <span class="stat-title col">items geregistreerd &nbsp; </span>
-                    </div>
-                </div>
-                <div class="col col-12 p3 stat">
-                    <div class="grey pt2">
-                        <span class="bigtext col">{{{ numberWithSpaces(dataStats.digitised) }}}</span>
-                        <span class="stat-title col">items gedigitaliseerd &nbsp; </span>
-                    </div>
-                </div>
-                <div class="col col-12 p3 stat nobottomborder">
-                    <div class="grey pt2">
-                        <span class="bigtext col">{{{ numberWithSpaces(dataStats.archived) }}}</span>
-                        <span class="stat-title col">items gearchiveerd &nbsp; </span> 
-                    </div>                 
-                </div>          
-            </div><!-- End of big stats -->    
         </div>
     </div> <!-- container -->
     
     <div class="divider"></div>
 
-    <!-- Graphs  -->  
-    <div class="col col-12 graphcontainer" v-for="graph in graphs"> 
-        <div class="container" v-bind:class="{ 'graph-airbox': graph.isLoading }">
-            <div class="col col-12">
-                <div class="col col-12">
-                    <h3 class="graphtitle">{{ graph.chartTitle }}</h3>
-                </div>
-                <div class="graphs-btns-container col">
-                    <div class="sub-graphs-btns-container " >
-                        <a href="#" 
-                            @click.prevent="refreshGraph(graph, 0)"
-                            v-bind:class="{ 'active': graph.chartFormat == 0 } " >
-                                Dag
-                        </a>
-                        <a href="#" 
-                            @click.prevent="refreshGraph(graph, 1)"
-                            v-bind:class="{ 'active': graph.chartFormat == 1 } " >
-                                Week
-                        </a>    
-                    </div>
-                    <div class="sub-graphs-btns-container">
-                        <a href="#" 
-                            @click.prevent="refreshGraph(graph, 2)"
-                            v-bind:class="{ 'active': graph.chartFormat == 2 } " >
-                                Maand
-                        </a>
-                        <a href="#" 
-                            @click.prevent="refreshGraph(graph, 3)"
-                            v-bind:class="{ 'active': graph.chartFormat == 3 } " >
-                                Jaar
-                        </a>    
-                    </div>                
-                </div>
-
-                <div class="graphs-databtns-container col ">
-                    <a href="#" 
-                    @click.prevent="loadGraphCumulative(graph)" 
-                    v-bind:class="{ 'active': graph.activeView == 'cumulative' }">
-                        Cumulatief
-                    </a>
-                    <a href="#" 
-                    @click.prevent="loadGraphEffective(graph)" 
-                    v-bind:class="{ 'active': graph.activeView == 'effective' }">
-                        Effectief
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Loader gif -->
-            <div class="col col-12 loader-airbox" 
-                v-show="graph.isLoading && graph.errormessages.length==0">
-                <div class="loader">
-                    <span class="icon-spin3 animate-spin"></span>
-                </div>
-            </div>   
-
-            <!-- errors -->
-            <div class="col col-12 loader-airbox mt10"  v-if="graph.errormessages.length > 0">
-                <div class="col col-12 center">
-                    <p>Oeps!</p>
-                    <p v-for="msg in graph.errormessages">{{ msg }}</p>
-                </div>
-            </div>
-
-            <div class="">
-                <canvas :id="graph.chartId" class="mb2" v-show="!graph.isLoading"></canvas>   <!-- Do not put this in a v-show or v-if div/container! Thank me for your saved tears later -->
-            </div>
-        </div>
-        
-        <div class="divider mt4"> </div>
-
-    </div><!-- End of Graphs -->
-
-    <div class="container clearfix">
-        <!-- Progress bars -->
-        <div class="graphcontainer col col-12"
-          v-bind:class="{ 'graph-airbox': !dataStats }">
-            <div class="col col-12">
-                <h3 class="graphtitle">Progress</h3>
-            </div>
-
-            <!-- Loader gif -->
-            <div class="col col-12 loader-airbox" v-show="!dataStats">
-                <div class="loader">
-                    <span class="icon-spin3 animate-spin"></span>       
-                </div>    
-            </div>              
-
-            <!-- errors -->
-            <div class="col col-12 loader-airbox mt10"  v-if="!progress && dataStats">
-                <div class="col col-12 center">
-                    <p>Oeps!</p>
-                    <p v-for="msg in graph.errormessages">{{ msg }}</p>
-                </div>
-            </div>
-
-            <div class="col col-12">
-                <canvas id="progress"></canvas>
-            </div>
-        </div> <!-- End of Progress bars -->      
-    </div>
     <%- include('footer', {}); %>
 </div>
