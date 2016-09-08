@@ -1,27 +1,3 @@
 {
-  "stats": "/api/report/global",
-  "report": {
-    "mam": {
-      "items": {
-        "last-day": "/api/report/mam/items?gran=last-day",
-        "last-week": "/api/report/mam/items?gran=last-week",
-        "last-month": "/api/report/mam/items?gran=last-month",
-        "last-year": "/api/report/mam/items?gran=last-year"
-      },
-      "bytes": {
-        "last-day": "/api/report/mam/bytes?gran=last-day",
-        "last-week": "/api/report/mam/bytes?gran=last-week",
-        "last-month": "/api/report/mam/bytes?gran=last-month",
-        "last-year": "/api/report/mam/bytes?gran=last-year"
-      }
-    },
-    "ams": {
-      "items": {
-        "last-day": "/api/report/mam/items?gran=last-day",
-        "last-week": "/api/report/mam/items?gran=last-week",
-        "last-month": "/api/report/ams/items?gran=last-month",
-        "last-year": "/api/report/ams/items?gran=last-year"
-      }
-    }
-  }
+  "briefings": "/api/briefings"
 }

@@ -1,61 +1,57 @@
-<div  id="dashboard" v-cloak>
+<div id="dashboard" v-cloak>
+    <!-- errors -->
+    <!-- <div class="container nopadding">           
+        <div class="col col-12 loader-airbox mt10" v-if="errors.length > 0">
+            <div class="col col-12 center" >
+                <p>Oeps!</p>
+                <p v-for="msg in errors">{{ msg }}</p>
+            </div>
+        </div>
+    </div> -->
+<!-- 
     <div class="container nopadding">
-        <!-- Loader gif -->
-        <div class="col col-12 loader-airbox" v-show="!dataStats && dataErrors.length==0">
+        <div class="col col-12">
+            <input v-model="newBriefing" v-on:keyup.enter="addBriefing">
+            <ul>
+                <li v-for="briefingId in briefingIds">
+                    <span>{{ briefingId }}</span>
+                    <ul>
+                        <li v-for="mediaId in briefings[briefingId]">
+                            <span>Media ID: {{ mediaId.media_id }}</span>
+                            <span>Status: {{ mediaId.status }}</span>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div> -->
+
+    <section class="briefingApp">
+        <header class="header">
+            <input class="new-briefing-id"
+                        autofocus autocomplete="off"
+                        placeholder="Briefing ID"
+            >
+            <div class="container-media-ids" id="dynamicInput">
+                Entry 1<br><input type="text" name="myInputs[]">
+            </div>
+            <input type="button" value="Add another media ID" onClick="addInput('dynamicInput');">
+            <br>
+            <input type="submit" value="Submit">
+        </header>
+        
+    </section>
+
+    <!-- <div class="divider"></div> -->
+
+    <!-- Loader gif -->
+    <!-- <div class="container nopadding">           
+        <div class="col col-12 loader-airbox" v-show="errors.length==0">
             <div class="loader">
                 <span class="icon-spin3 animate-spin"></span>       
             </div>
-        </div>              
-
-        <!-- dataStats errors -->
-        <div class="col col-12 loader-airbox mt10" v-if="dataErrors.length > 0">
-            <div class="col col-12 center" >
-                <p>Oeps!</p>
-                <p v-for="msg in dataErrors">{{ msg }}</p>
-            </div>
         </div>
-    </div>
-
-    <div class="container nopadding">
-        <div class="clearfix"  v-bind:class="{ 'bigstats-airbox' : !dataStats && dataErrors.length==0 }">
-            <!-- Piechart part -->
-            <div class="col col-12 md-col-7 pb7 pt4"
-                 v-bind:class="{ 'border-right' : dataStats && dataErrors.length==0 }">  
-                <div class="col col-12 mt3 top-stats"> 
-                    <div class="pie-chart-container col">
-                        <canvas id="statsChart"></canvas>
-                    </div>
-
-                    <div class="legend col col-12 md-col-4" v-if="dataPieChartStats">
-                        <ul v-for="pieChartStat in dataPieChartStats">
-                            <li>
-                                <div class="legend-item">
-                                    <div class="circle" style="background-color: {{ getColor($index) }};"></div>
-                                    <!-- <p>{{pieChartStat}}</p> -->
-                                    <p>{{$key}} &mdash; {{ numberWithSpaces(pieChartStat) }} items</p>    
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col col-12 pl7">
-                    <div class="col col-12 stat nobottomborder norightborder pt4" v-if="dataStats">
-                        <div class="grey pt2" v-if="dataStats.terabytes < 1024">
-                            <div class="bigtext col">{{ dataStats.terabytes }} </div>
-                            <div class="stat-title col ml3 lower">Terabytes gearchiveerd</div>
-                        </div>
-                        <div class="grey pt2" v-else>
-                            <div class="bigtext col">{{ (Math.round(dataStats.terabytes / 10.24) / 100).toString().replace('.', ',') }} </div>
-                            <div class="stat-title col ml3 lower">Petabytes gearchiveerd</div>   
-                        </div>
-                    </div>
-                </div>        
-            </div>
-        </div>
-    </div> <!-- container -->
-    
-    <div class="divider"></div>
+    </div> -->
 
     <%- include('footer', {}); %>
 </div>

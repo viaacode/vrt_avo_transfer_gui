@@ -3,7 +3,14 @@ var moment = require('moment');
 var jsend = require('../util/jsend');
 
 module.exports = function (router, config, request) {
-  router.get('/api/briefings/:id', briefings);
+  router.get('/api/briefings/:id?', briefings);
+
+  function briefings (req, res, next) {
+    if (!req.params.id) req.params.id = '';
+    var url = config.muleHost + '/briefings/' + req.params.id;
+
+    forwardRequestCall(url, res, next);
+  }
 
   function forwardRequestCall (url, res, next, parse) {
     console.log('executing forwardRequestCall(' + url + ')');
@@ -22,14 +29,4 @@ module.exports = function (router, config, request) {
         .send(jsend.success(data));
     });
   }
-
-  //region briefings
-  function briefings (req, res, next) {
-
-    var url = config.muleHost + config.endpoints.briefings + '?cp=' + req.params.id;
-
-    forwardRequestCall(url, res, next);
-  }
-
-  //endregion
 };

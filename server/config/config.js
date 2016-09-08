@@ -45,7 +45,8 @@ var template = {
 
 var qas = {
   // Mule endpoint
-  muleHost: 'http://do-qas-esb-01.do.viaa.be:10005',
+  // muleHost: 'http://do-qas-esb-01.do.viaa.be:10005',
+  muleHost: 'http://localhost:10002',
   // toggle to show api links on /api/docs
   showApiDocs: true,
   // general app settings

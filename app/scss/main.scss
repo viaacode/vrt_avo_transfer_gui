@@ -1,15 +1,28 @@
+html,
 body {
-    background-color:$grey-bg;
-    color:$textcolor;
-    font-family: $viaafont;
+    margin: 0;
+    padding: 0;
 }
 
-header, h1, h2, h3{
+body {
+    /*background-color:$grey-bg;*/
+    /*color:$textcolor;*/
     font-family: $viaafont;
+    font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.4em;
+    background: #f5f5f5;
+    color: #4d4d4d;
+    min-width: 430px;
+    max-width: 750px;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    font-weight: 300;
 }
 
 .container { 
-    width:100%;
+    width: 80%;
     margin: 0;
     padding: 1.5rem 0 0 0;
 
@@ -22,6 +35,11 @@ header, h1, h2, h3{
             padding:0;
         }
     }
+}
+
+.container-media-ids {
+    display: flex;
+    justify-content: flex-start;
 }
 
 .underline {
