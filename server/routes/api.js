@@ -9,7 +9,54 @@ module.exports = function (router, config, request) {
     if (!req.params.id) req.params.id = '';
     var url = config.muleHost + '/briefings/' + req.params.id;
 
-    forwardRequestCall(url, res, next);
+    debugger;
+    //forwardRequestCall(url, res, next);
+
+    var data = [{
+            "briefing123": [
+              {
+                "briefing_title": "Beeldmateriaal test",
+                "media_type": "video",
+                "retry_count": null,
+                "media_id": "AIM10022093",
+                "briefing_id": "briefing123",
+                "email": "brecht.vandevyvere@viaa.be",
+                "status": "QUEUED",
+                "reception_date": "2016-08-25T10:52:37",
+                "id": 2
+              },
+              {
+                "briefing_title": "Beeldmateriaal test",
+                "media_type": "audio",
+                "retry_count": null,
+                "media_id": "AIM10022092",
+                "briefing_id": "briefing123",
+                "email": "brecht.vandevyvere@viaa.be",
+                "status": "REQUESTED",
+                "reception_date": "2016-08-25T10:52:37",
+                "id": 3
+              }
+            ]
+          },
+          {
+            "briefing456": [
+              {
+                "briefing_title": "joo",
+                "media_type": "video",
+                "retry_count": null,
+                "media_id": "AIM1002",
+                "briefing_id": "briefing456",
+                "email": "brecht.vandevyvere@viaa.be",
+                "status": "RECONCILED",
+                "reception_date": "2016-08-25T10:52:37",
+                "id": 4
+              }
+            ]
+          }];
+
+    res
+        .append('Content-Type', 'application/json')
+        .send(jsend.success(data));
   }
 
   function forwardRequestCall (url, res, next, parse) {
