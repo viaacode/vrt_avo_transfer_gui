@@ -8,7 +8,7 @@ To run this project you need to have [Node and NPM](https://docs.npmjs.com/getti
 
 1. `npm install`
 2. `npm start`
-3. Go to [localhost:1337](http://localhost:1337) in your browser.
+3. Go to [localhost:1234](http://localhost:1234) in your browser.
 
 ## More: configuration, development tips, ...
 See [SETUP.md](SETUP.md)

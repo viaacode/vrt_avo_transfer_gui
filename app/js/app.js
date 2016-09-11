@@ -4,9 +4,8 @@
     Called from everywhere * . *
 */
 
-// How to split big numbers (1000)
-var seperationString = ' ';
-var counter_media_ids = 1;
+
+// var counter_media_ids = 1;
 
 // Our beautiful vanilla JS ajax call function <3
 function ajaxcall(url, done) {
@@ -57,13 +56,6 @@ function showmenu() {
     document.getElementById("user-container-id").classList.toggle("show");
 }
 
-function addInput(divName){
-    var newdiv = document.createElement('div');
-    newdiv.innerHTML = "Entry " + (counter_media_ids + 1) + " <br><input type='text' name='myInputs[]'>";
-    document.getElementById(divName).appendChild(newdiv);
-    counter_media_ids++;
-}
-
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
@@ -72,3 +64,12 @@ window.onclick = function(event) {
     }
 };
 
+
+/*
+function addInput(divName){
+    var newdiv = document.createElement('div');
+    newdiv.innerHTML = "Entry " + (counter_media_ids + 1) + " <br><input type='text' name='myInputs[]'>";
+    document.getElementById(divName).appendChild(newdiv);
+    counter_media_ids++;
+}
+*/
