@@ -53,7 +53,7 @@ var qas = {
   app: {
     // used in console to tell which app is started
     name: 'VRT_AVO_TRANSFER',
-    port: process.env.PORT || 80,
+    port: process.env.PORT || 1234,
     sessionSecret: process.env.SESSION_SECRET || 'VRT_AVO_TRANSFER'
   },
   paths: {

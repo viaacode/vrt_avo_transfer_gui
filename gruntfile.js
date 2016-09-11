@@ -13,9 +13,7 @@ var grunt = require("grunt");
   copy: {
     main: {
       files: [
-        {expand: false, src: ['node_modules/basscss/css/basscss.css'], dest: 'app/scss/_basscss.scss', filter: 'isFile'},
         {expand: false, src: ['node_modules/vue/dist/vue.js'], dest: 'app/public/js/vue.js', filter: 'isFile'},
-        {expand: false, src: ['node_modules/chart.js/dist/Chart.js'], dest: 'app/public/js/chart.js', filter: 'isFile'},
         {expand: false, src: ['node_modules/moment/min/moment.min.js'], dest: 'app/public/js/moment.js', filter: 'isFile'},
 
         {expand: true, cwd:'app/js', src: '**/*', dest: 'app/public/js'},
