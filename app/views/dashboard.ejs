@@ -1,4 +1,4 @@
-<div id="dashboard" v-cloak>
+<div id="briefingApp" v-cloak>
     <!-- errors -->
     <!-- <div class="container nopadding">           
         <div class="col col-12 loader-airbox mt10" v-if="errors.length > 0">
@@ -26,7 +26,7 @@
         </div>
     </div> -->
 
-    <section class="briefingApp">
+    <div class="briefingItem">
         <header class="header">
             <input class="new-briefing-id"
                         autofocus autocomplete="off"
@@ -35,12 +35,12 @@
             <div class="container-media-ids" id="dynamicInput">
                 Entry 1<br><input type="text" name="myInputs[]">
             </div>
-            <input type="button" value="Add another media ID" onClick="addInput('dynamicInput');">
+            <input type="button" value="Add another media ID"  @click="addInput('dynamicInput')">
             <br>
             <input type="submit" value="Submit">
         </header>
         
-    </section>
+    </div>
 
     <!-- <div class="divider"></div> -->
 

@@ -1,9 +1,11 @@
 (function() {
-  var charts = [];
+  // API endpoint
+  // http://localhost:1234/api/briefings
+
   var runningAjaxCalls = [];
 
   new Vue({
-    el: '#dashboard',
+    el: '#briefingApp',
     data: {
       counter_media_ids: 0,
       errors: [],
