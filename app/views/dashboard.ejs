@@ -1,4 +1,4 @@
-<div id="briefingApp" v-cloak>
+<div id="briefingApp" v-cloak class="container">
     <!-- errors -->
     <!-- <div class="container nopadding">           
         <div class="col col-12 loader-airbox mt10" v-if="errors.length > 0">
@@ -8,7 +8,7 @@
             </div>
         </div>
     </div> -->
-<!-- 
+    <!-- 
     <div class="container nopadding">
         <div class="col col-12">
             <input v-model="newBriefing" v-on:keyup.enter="addBriefing">
@@ -26,20 +26,34 @@
         </div>
     </div> -->
 
-    <div class="briefingItem">
-        <header class="header">
-            <input class="new-briefing-id"
-                        autofocus autocomplete="off"
-                        placeholder="Briefing ID"
-            >
-            <div class="container-media-ids" id="dynamicInput">
-                Entry 1<br><input type="text" name="myInputs[]">
-            </div>
-            <input type="button" value="Add another media ID"  @click="addInput('dynamicInput')">
-            <br>
-            <input type="submit" value="Submit">
-        </header>
-        
+    <div v-for="briefing in briefings" class="briefingItem">
+
+        <h1>{{ briefing.briefing_id }}</h1>
+        <!-- briefing id -->
+        <p>{{ briefing.briefing_title }}</p>
+        <p>{{ briefing.reception_date }}</p>
+
+        <div v-for="media in briefing.media_ids">
+            <!-- key : values -->
+            <ul>
+                <li v-for="value in media">{{ $key }} : {{ value }}</li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="addItem">
+
+        <input class="new-briefing-id" autofocus autocomplete="off" placeholder="Briefing ID">
+        <div class="container-media-ids" id="dynamicInput">
+            Entry 1<br><input type="text" name="myInputs[]">
+        </div>
+        <input type="button" value="Add another media ID" @click="addInput('dynamicInput')">
+        <br>
+        <input type="submit" value="Submit">
+
+
     </div>
 
     <!-- <div class="divider"></div> -->

@@ -1,12 +1,8 @@
 /* Navigation menu */
 header {
-    height:33rem;
+    height:11rem;
     width:100%;
     padding:0;
-
-    @media (min-width: 700px){
-        height: 11rem;
-    }
 
     .navigation {
         padding-top:1rem;
