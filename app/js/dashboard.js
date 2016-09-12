@@ -1,4 +1,4 @@
-(function () {
+$(document).ready(function () {
     // API endpoint
     // http://localhost:1234/api/briefings
 
@@ -15,6 +15,7 @@
         },
         created: function () {
             refreshView(this);
+            
         },
         methods: {
             addBriefing: function () {
@@ -31,6 +32,9 @@
                 var newdiv = document.createElement('div');
                 newdiv.innerHTML = "<li>Entry " + (this.counter_media_ids + 1) + " <br><input type='text' name='myInputs[]'></li>";
                 document.getElementById(divName).appendChild(newdiv);
+            },
+            toggleContent: function(e) {
+                $(e.target).closest('.briefingItem').find('.briefing_content').toggle(150);
             }
         }
     });
@@ -45,7 +49,9 @@
                 vueinstance.briefings = result.briefings;
 
             }
-        }));
+        }));        
     }
 
-})();
+
+
+});

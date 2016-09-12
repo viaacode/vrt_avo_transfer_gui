@@ -4,9 +4,6 @@
     Called from everywhere * . *
 */
 
-
-// var counter_media_ids = 1;
-
 // Our beautiful vanilla JS ajax call function <3
 function ajaxcall(url, done) {
     var r = new XMLHttpRequest();
@@ -63,13 +60,3 @@ window.onclick = function(event) {
         d.classList.remove('show');
     }
 };
-
-
-/*
-function addInput(divName){
-    var newdiv = document.createElement('div');
-    newdiv.innerHTML = "Entry " + (counter_media_ids + 1) + " <br><input type='text' name='myInputs[]'>";
-    document.getElementById(divName).appendChild(newdiv);
-    counter_media_ids++;
-}
-*/

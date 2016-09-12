@@ -2,7 +2,64 @@
     background: #fff;
     padding: 2rem;
     width:98%;
-    margin:0 1% 5rem;
+    margin:0 1% 4rem;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
     0 15px 20px 0 rgba(0, 0, 0, 0.1);
+
+    .briefing_title {    
+        width:100%;
+        height:2.2rem;
+
+        .briefing_id {
+            float:left;
+            font-size:2.2rem;
+            font-weight:800;
+            text-transform:capitalize;
+        }
+
+        .briefing_expand {
+            float:right;
+            font-size:1.6rem;
+            padding:0 1rem;
+        }
+
+    }
+
+    .briefing_content {
+        display:none;
+        clear:both;
+        margin-top:2rem;
+
+        p {
+            font-weight:800;
+            font-size:1.6rem;
+            margin-bottom:2rem;
+        }
+
+        table {
+            width:100%;
+            margin-bottom: 4rem;
+
+            tr {
+                border-bottom:1px solid $grey-lighterer;
+
+                &:nth-child(even) {
+                    background-color:$grey-bg;
+                }
+
+                &:first-child {
+                    border-top:1px solid $grey-lighterer;
+                }
+                &:hover {
+                    background-color:$grey-lighterer;
+                }
+            }
+            td {
+                width:50%;
+                padding:1rem;
+
+            }
+        }
+    }
 }
+

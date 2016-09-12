@@ -15,6 +15,7 @@ var grunt = require("grunt");
       files: [
         {expand: false, src: ['node_modules/vue/dist/vue.js'], dest: 'app/public/js/vue.js', filter: 'isFile'},
         {expand: false, src: ['node_modules/moment/min/moment.min.js'], dest: 'app/public/js/moment.js', filter: 'isFile'},
+        {expand: false, src: ['node_modules/jquery/dist/jquery.min.js'], dest: 'app/public/js/jquery.js', filter: 'isFile'},
 
         {expand: true, cwd:'app/js', src: '**/*', dest: 'app/public/js'},
         {expand: true, cwd:'app/assets', src: '**/*', dest: 'app/public/assets'},

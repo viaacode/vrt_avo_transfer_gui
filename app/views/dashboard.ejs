@@ -28,19 +28,27 @@
 
     <div v-for="briefing in briefings" class="briefingItem">
 
-        <h1>{{ briefing.briefing_id }}</h1>
-        <!-- briefing id -->
-        <p>{{ briefing.briefing_title }}</p>
-        <p>{{ briefing.reception_date }}</p>
+        <div class="briefing_title" @click="toggleContent">
+                <a href="#" class="briefing_id">{{ briefing.briefing_id }}</a>
+                <a href="#" span class="briefing_expand"><span class="icon-down-open"></span></a>
+        </div>   
 
-        <div v-for="media in briefing.media_ids">
-            <!-- key : values -->
-            <ul>
-                <li v-for="value in media">{{ $key }} : {{ value }}</li>
-            </ul>
+        <div class="briefing_content">         
+            <p>{{ briefing.briefing_title | capitalize }} - {{ briefing.reception_date }}</p>
+
+            <table v-for="media in briefing.media_ids">           
+                <tr v-for="value in media">
+                    <td>{{ $key | capitalize }}</td>
+                    <td>{{ value }}</td>
+                </tr>      
+            </table>
         </div>
     </div>
 
+
+    <div class="addItem-icon">
+
+    </div>
 
 
     <div class="addItem">
