@@ -49,6 +49,10 @@
 
                 &:first-child {
                     border-top:1px solid $grey-lighterer;
+                    font-weight:800;
+                    &:hover { 
+                        background-color:#fff;
+                    }
                 }
                 &:hover {
                     background-color:$grey-lighterer;
@@ -65,9 +69,11 @@
 
 
 .addItem-icon {
-    position:absolute;
     font-size:6rem;
+    margin:2rem 0 4rem;
+    float:right;
+}
 
-    bottom:4rem;
-    right:0;
+.addItem-content {
+    display:none;
 }

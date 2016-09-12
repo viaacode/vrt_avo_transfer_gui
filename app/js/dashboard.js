@@ -35,6 +35,9 @@ $(document).ready(function () {
             },
             toggleContent: function(e) {
                 $(e.target).closest('.briefingItem').find('.briefing_content').toggle(150);
+            },
+            showAddItemContent: function() {
+                $('.addItem-content').show(300);
             }
         }
     });

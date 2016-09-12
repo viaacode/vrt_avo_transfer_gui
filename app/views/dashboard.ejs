@@ -36,7 +36,8 @@
         <div class="briefing_content">         
             <p>{{ briefing.briefing_title | capitalize }} - {{ briefing.reception_date }}</p>
 
-            <table v-for="media in briefing.media_ids">           
+            <table v-for="media in briefing.media_ids">
+                <tr><td>Media item</td><td></td></tr>           
                 <tr v-for="value in media">
                     <td>{{ $key | capitalize }}</td>
                     <td>{{ value }}</td>
@@ -45,14 +46,13 @@
         </div>
     </div>
 
-
-    <div class="addItem-icon">
+  
+    <div class="addItem-icon" @click="showAddItemContent">
         <a href="#"><span class="icon-plus-circled"></span></a>
     </div>
 
 
-    <div class="addItem">
-
+    <div class="addItem-content">
         <input class="new-briefing-id" autofocus autocomplete="off" placeholder="Briefing ID">
         <div class="container-media-ids" id="dynamicInput">
             Entry 1<br><input type="text" name="myInputs[]">
@@ -60,7 +60,6 @@
         <input type="button" value="Add another media ID" @click="addInput('dynamicInput')">
         <br>
         <input type="submit" value="Submit">
-
 
     </div>
 
