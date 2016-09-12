@@ -24,6 +24,8 @@ body {
     width: 100%;
     margin: 0;
     padding: 1.5rem 0 0 0;
+    position:relative;
+    z-index:10;
 
     @media (min-width: 960px) {
         width:960px;
