@@ -7,14 +7,20 @@
         </div>   
 
         <div class="briefing_content">         
-            <p>{{ briefing.briefing_title | capitalize }} - {{ briefing.reception_date }}</p>
+            <h2>{{ briefing.briefing_title | capitalize }}</h2>
+            <p>Door {{ briefing.email }}</p>
+            <p>Op {{ briefing.reception_date }}</p>
 
-            <table v-for="media in briefing.media_ids">
-                <tr><td>Media item</td><td></td></tr>
-                <!-- List every key/value in object -->   
-                <tr v-for="value in media">      
-                    <td v-if="$key != 'retry_count'">{{ $key | capitalize }}</td>
-                    <td v-if="$key != 'retry_count'">{{ value }}</td>
+            <table>     
+                <tr>
+                    <td>Media ID</td>
+                    <td>Media Type</td>
+                    <td>Status</td>
+                </tr>     
+                <tr v-for="item in briefing.media_ids">      
+                    <td>{{ item.media_id }}</td>
+                    <td>{{ item.media_type }}</td>
+                    <td>{{ item.status }}</td>            
                 </tr>      
             </table>
         </div>

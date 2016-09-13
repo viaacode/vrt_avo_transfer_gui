@@ -32,32 +32,31 @@ module.exports = function (router, config, request) {
                     "briefing_id": "briefing 1",
                     "briefing_title": "Beeldmateriaal test",
                     "reception_date": "2016-08-25T10:52:37",
+                    "email": "hendrik@viaa.be",
                     "media_ids": [
                         {
                             "media_id": "AIM10022093",
                             "media_type": "video",
                             "status": "QUEUED",
-                            "email": "brecht.vandevyvere@viaa.be",
                             "retry_count": null,
                         },
                         {
                             "media_id": "AIM10022093",
                             "media_type": "video",
                             "status": "REQUESTED",
-                            "email": "hendrik@viaa.be",
                             "retry_count": null,
                         }]
                 },
                 {
                     "briefing_id": "briefing 2",
                     "briefing_title": "Beeldmateriaal test",
+                    "email": "brecht.vandevyvere@viaa.be",
                     "reception_date": "2016-08-25T10:52:37",
                     "media_ids": [
                         {
                             "media_id": "AIM10022093",
                             "media_type": "video",
                             "status": "QUEUED",
-                            "email": "brecht.vandevyvere@viaa.be",
                             "retry_count": null,
                         }]
                 }]
