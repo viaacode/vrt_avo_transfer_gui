@@ -38,6 +38,9 @@ $(document).ready(function () {
             },
             showAddItemContent: function() {
                 $('.addItem-content').show(300);
+            },
+            hideAddItemContent: function() {
+                $('.addItem-content').hide(300);
             }
         }
     });

@@ -4,6 +4,19 @@ var jsend = require('../util/jsend');
 
 module.exports = function (router, config, request) {
     router.get('/api/briefings/:id?', briefings);
+    router.post('/api/briefings/add', addbriefing);
+
+    function addbriefing(req, res, next) {
+        var briefing_id = req.body.briefing_id;
+        var email = req.body.email;
+
+        console.log(req.body);
+        console.log("post received: " + briefing_id + ", "  + email);
+
+        res
+            .append('Content-Type', 'application/json')
+            .send(jsend.success());
+    }
 
     function briefings(req, res, next) {
         if (!req.params.id) req.params.id = '';

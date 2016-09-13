@@ -26,13 +26,23 @@
 
 
     <div class="addItem-content">
-        <input class="new-briefing-id" autofocus autocomplete="off" placeholder="Briefing ID">
-        <div class="container-media-ids" id="dynamicInput">
-            Entry 1<br><input type="text" name="myInputs[]">
-        </div>
-        <input type="button" value="Add another media ID" @click="addInput('dynamicInput')">
-        <br>
-        <input type="submit" value="Submit">
+        <h2>Add item</h2>
+        <form action="api/briefings/add" method="POST">
+            <p>
+                <input autofocus autocomplete="off" placeholder="Briefing ID" id="briefing_id">
+            </p>
+            <p>
+                <input placeholder="E-mail" id="email">
+            </p>
+
+            <!--<div class="container-media-ids" id="dynamicInput">
+                Entry 1<br><input type="text" name="myInputs[]">
+            </div>
+            <input type="button" value="Add another media ID" @click="addInput('dynamicInput')">
+            <br>-->
+
+            <input type="submit" value="Submit" >
+        </form>
     </div>
 
 

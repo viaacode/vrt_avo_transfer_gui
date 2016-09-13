@@ -1,3 +1,4 @@
 {
-  "briefings": "/api/briefings"
+  "briefings": "/api/briefings",
+  "addbriefing": "/api/briefings/add"
 }
