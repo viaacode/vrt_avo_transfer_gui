@@ -1,5 +1,5 @@
 <div id="briefingApp" v-cloak class="container">
-    <div v-for="briefing in briefings" class="briefingItem">
+    <div v-for="briefing in briefings" class="briefingItem contentbox">
 
         <div class="briefing_title" @click="toggleContent">
                 <a href="#" class="briefing_id">{{ briefing.briefing_id }}</a>
@@ -10,24 +10,20 @@
             <p>{{ briefing.briefing_title | capitalize }} - {{ briefing.reception_date }}</p>
 
             <table v-for="media in briefing.media_ids">
-                <tr><td>Media item</td><td></td></tr>           
-                <tr v-for="value in media">
-                    <td>{{ $key | capitalize }}</td>
-                    <td>{{ value }}</td>
+                <tr><td>Media item</td><td></td></tr>
+                <!-- List every key/value in object -->   
+                <tr v-for="value in media">      
+                    <td v-if="$key != 'retry_count'">{{ $key | capitalize }}</td>
+                    <td v-if="$key != 'retry_count'">{{ value }}</td>
                 </tr>      
             </table>
         </div>
     </div>
 
-  
-    <div class="addItem-icon" @click="showAddItemContent">
-        <a href="#"><span class="icon-plus-circled"></span></a>
-    </div>
-
-
-    <div class="addItem-content">
+    <div class="addItem-content contentbox">
         <h2>Add item</h2>
-        <form action="api/briefings/add" method="POST">
+        <form>
+         <!-- action="api/briefings/add" method="POST" -->
             <p>
                 <input autofocus autocomplete="off" placeholder="Briefing ID" id="briefing_id">
             </p>
@@ -41,8 +37,15 @@
             <input type="button" value="Add another media ID" @click="addInput('dynamicInput')">
             <br>-->
 
-            <input type="submit" value="Submit" >
+            <input type="submit" value="Submit" @click="submitAddItem">
         </form>
+    </div>
+
+    <div class="toast contentbox">
+    </div>
+
+    <div class="addItem-icon" @click="showAddItemContent">
+        <a href="#"><span class="icon-plus-circled"></span></a>
     </div>
 
 

@@ -38,9 +38,14 @@ $(document).ready(function () {
             },
             showAddItemContent: function() {
                 $('.addItem-content').show(300);
+                $('.addItem-icon').hide(300);
             },
-            hideAddItemContent: function() {
+            submitAddItem: function() {
                 $('.addItem-content').hide(300);
+                $('.addItem-icon').show(300);
+
+                $('.toast').text('Item toegevoegd');
+                $('.toast').slideDown(300).delay(3000).slideUp(300);
             }
         }
     });
