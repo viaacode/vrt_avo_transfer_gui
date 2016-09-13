@@ -23,7 +23,11 @@ $(document).ready(function () {
                 $(e.target).closest('.briefingItem').find('.briefing_content').toggle(150);
             },
             showAddItemContent: function() {
-                $('.addItem-content').show(300);
+                $('.addItem-content').show(300, function() {
+                    $('html, body').animate({
+                        scrollTop: ($('#addItem').offset().top)
+                    },500);
+                });
                 $('.addItem-icon').hide(300);
             },
             // Toast for if we would not redirect to other page
@@ -33,6 +37,8 @@ $(document).ready(function () {
 
                 $('.toast').text('Item toegevoegd');
                 $('.toast').slideDown(300).delay(3000).slideUp(300);
+
+                
             },
             addMediaId: function() {
                 var val = $('.mediaIdValue').val();

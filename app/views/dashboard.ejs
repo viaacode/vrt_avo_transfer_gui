@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <div class="addItem-content contentbox">
+    <div class="addItem-content contentbox" id="addItem">
         <h2>Item toevoegen</h2>
         <form action="/api/briefings" method="POST">
 
@@ -58,7 +58,7 @@
     </div>
 
     <div class="addItem-icon" @click="showAddItemContent">
-        <a href="#"><span class="icon-plus-circled"></span></a>
+        <a href="#" @click.prevent><span class="icon-plus-circled"></span></a>
     </div>
 
 
