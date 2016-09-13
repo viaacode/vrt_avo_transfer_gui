@@ -1,31 +1,4 @@
 <div id="briefingApp" v-cloak class="container">
-    <!-- errors -->
-    <!-- <div class="container nopadding">           
-        <div class="col col-12 loader-airbox mt10" v-if="errors.length > 0">
-            <div class="col col-12 center" >
-                <p>Oeps!</p>
-                <p v-for="msg in errors">{{ msg }}</p>
-            </div>
-        </div>
-    </div> -->
-    <!-- 
-    <div class="container nopadding">
-        <div class="col col-12">
-            <input v-model="newBriefing" v-on:keyup.enter="addBriefing">
-            <ul>
-                <li v-for="briefingId in briefingIds">
-                    <span>{{ briefingId }}</span>
-                    <ul>
-                        <li v-for="mediaId in briefings[briefingId]">
-                            <span>Media ID: {{ mediaId.media_id }}</span>
-                            <span>Status: {{ mediaId.status }}</span>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div> -->
-
     <div v-for="briefing in briefings" class="briefingItem">
 
         <div class="briefing_title" @click="toggleContent">
@@ -60,19 +33,8 @@
         <input type="button" value="Add another media ID" @click="addInput('dynamicInput')">
         <br>
         <input type="submit" value="Submit">
-
     </div>
 
-    <!-- <div class="divider"></div> -->
-
-    <!-- Loader gif -->
-    <!-- <div class="container nopadding">           
-        <div class="col col-12 loader-airbox" v-show="errors.length==0">
-            <div class="loader">
-                <span class="icon-spin3 animate-spin"></span>       
-            </div>
-        </div>
-    </div> -->
 
     <%- include('footer', {}); %>
 </div>
