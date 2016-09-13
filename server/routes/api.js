@@ -4,18 +4,19 @@ var jsend = require('../util/jsend');
 
 module.exports = function (router, config, request) {
     router.get('/api/briefings/:id?', briefings);
-    router.post('/api/briefings/add', addbriefing);
+    router.post('/api/briefings', addbriefing);
 
     function addbriefing(req, res, next) {
         var briefing_id = req.body.briefing_id;
         var email = req.body.email;
+        var media_ids = req.body.media_ids.split(','); // Delimiter defined in app/dashboard.js: var mediaIdsDelimiter
 
-        console.log(req.body);
         console.log("post received: " + briefing_id + ", "  + email);
+        console.log("Media ids");
+        for(var i = 0; i < media_ids.length; i++) {
+            console.log(media_ids[i]);
+        }
 
-        res
-            .append('Content-Type', 'application/json')
-            .send(jsend.success());
     }
 
     function briefings(req, res, next) {

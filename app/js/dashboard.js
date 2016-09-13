@@ -39,8 +39,12 @@ $(document).ready(function () {
                 $('.media-ids-added').append('<span>' + val + '</span>');
 
                 // Add to hidden field for POST request
-                if($('#mediaIds').val() === '') $('#mediaIds').val(val);    // If first item, don't add delimiter in front of it
-                else $('#mediaIds').val($('#mediaIds').val() + mediaIdsDelimiter + val);
+                if($('#media_ids').val() === '') $('#media_ids').val(val);    // If first item, don't add delimiter in front of it
+                else $('#media_ids').val($('#media_ids').val() + mediaIdsDelimiter + val);
+
+                // UX: empty input field text and refocus
+                $('.mediaIdValue').val('').focus();
+
             }
         }
     });
