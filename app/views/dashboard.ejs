@@ -21,9 +21,10 @@
     </div>
 
     <div class="addItem-content contentbox">
-        <h2>Add item</h2>
-        <form>
-         <!-- action="api/briefings/add" method="POST" -->
+        <h2>Item toevoegen</h2>
+        <form action="api/briefings/add" method="POST">
+
+         <!-- get email, briefing_id and mediaIds from POST request --> 
             <p>
                 <input autofocus autocomplete="off" placeholder="Briefing ID" id="briefing_id">
             </p>
@@ -31,13 +32,17 @@
                 <input placeholder="E-mail" id="email">
             </p>
 
-            <!--<div class="container-media-ids" id="dynamicInput">
-                Entry 1<br><input type="text" name="myInputs[]">
-            </div>
-            <input type="button" value="Add another media ID" @click="addInput('dynamicInput')">
-            <br>-->
+            <div class="media-ids-container">
+                <div class="media-ids-added">
+                </div>
+                <div class="media-ids-input">
+                    <input type="text" placeholder="Media ID" class="mediaIdValue">
+                    <input type="button" value="Voeg Media ID toe" @click="addMediaId">
+                </div>
+            </div>     
 
-            <input type="submit" value="Submit" @click="submitAddItem">
+            <input type="hidden" id="mediaIds">
+            <input class="submitbtn" type="submit" value="Voeg item toe">
         </form>
     </div>
 

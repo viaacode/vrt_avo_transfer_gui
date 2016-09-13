@@ -93,12 +93,55 @@
 }
 
 .addItem-content {
-    display:none;
+   display:none;     
+   overflow:hidden;
 
     h2 {
         font-size:2rem;
         font-weight:800;
         margin-bottom:2rem;
     }    
+
+    .submitbtn {
+        margin-top:1rem;
+        clear:both;
+        float:left;
+        display:block;
+  
+    }
+}
+
+
+.media-ids-container {
+    border:1px solid $grey-lighter;
+    display:block;
+    float:left;
+    clear:right;
+    padding:0.2rem;
+    height:3.6rem;
+    line-height:3rem;
+
+    .media-ids-added, .media-ids-input {
+        height:3rem;
+
+    }
+
+    .media-ids-added {
+        float:left;
+
+        span {
+            background-color:$orange;
+            color:$almostwhite;
+
+            padding:0.5rem 1rem;
+
+            margin-right:0.5rem;
+            border-radius:4px;
+        }
+    }
+
+    .media-ids-input {
+        float:right;
+    }
 
 }
