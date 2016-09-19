@@ -1,66 +1,62 @@
-<div id="briefingApp" v-cloak class="container">
-    <div v-for="briefing in briefings" class="briefingItem contentbox">
+    <div id="briefingApp" v-cloak class="container">
+        <div v-for="briefing in briefings" class="briefingItem contentbox">
 
-        <div class="briefing_title" @click="toggleContent">
-                <a href="#" class="briefing_id">{{ briefing.briefing_id }}</a>
-                <a href="#" span class="briefing_expand"><span class="icon-down-open"></span></a>
-        </div>   
+            <div class="briefing_header" @click="toggleContent">
+                    <a href="#" class="briefing_title">{{ briefing.briefing_title | capitalize }}<small> - {{ briefing.briefing_id }}</small></a> 
+                    <a href="#" span class="briefing_expand"><span class="icon-down-open"></span></a>
+            </div>   
 
-        <div class="briefing_content">         
-            <h2>{{ briefing.briefing_title | capitalize }}</h2>
-            <p>Door {{ briefing.email }}</p>
-            <p>Op {{ briefing.reception_date }}</p>
+            <div class="briefing_content">         
+                <p>Door {{ briefing.email }} op {{ briefing.reception_date }}</p>
 
-            <table>     
-                <tr>
-                    <td>Media ID</td>
-                    <td>Media Type</td>
-                    <td>Status</td>
-                </tr>     
-                <tr v-for="item in briefing.media_ids">      
-                    <td>{{ item.media_id }}</td>
-                    <td>{{ item.media_type }}</td>
-                    <td>{{ item.status }}</td>            
-                </tr>      
-            </table>
+                <table>     
+                    <tr>
+                        <td>Media ID</td>
+                        <td>Media Type</td>
+                        <td>Status</td>
+                    </tr>     
+                    <tr v-for="item in briefing.media_ids">      
+                        <td>{{ item.media_id }}</td>
+                        <td>{{ item.media_type }}</td>
+                        <td>{{ item.status }}</td>            
+                    </tr>      
+                </table>
+            </div>
         </div>
+
+        <div class="addItem-content contentbox" id="addItem">
+            <h2>Item toevoegen</h2>
+            <form>
+
+            <!-- get email, briefing_id and media_ids from POST request --> 
+                <p>
+                    <input autofocus autocomplete="off" placeholder="Briefing ID" id="briefing_id">
+                </p>
+                <p>
+                    <input placeholder="E-mail" id="email" disabled>
+                </p>
+
+                <div class="media-ids-container">
+                    <div class="media-ids-added">
+                    </div>
+                    <!--<div class="media-ids-input">
+                        <input type="text" placeholder="Media ID" id="mediaIdValue">
+                        <input type="button" value="Voeg Media ID toe" @click="addMediaId('test')" > 
+                    </div>-->
+                </div>     
+
+                <input type="hidden" id="media_ids" id="media_ids">
+                <input class="submitbtn" type="button" value="Voeg item toe" @click="addItem">
+            </form>
+        </div>
+
+        <div class="toast contentbox">
+        </div>
+
+        <div class="addItem-icon" @click="showAddItemContent">
+            <a href="#" @click.prevent><span class="icon-plus-circled"></span></a>
+        </div>
+
+
+        <%- include('footer', {}); %>
     </div>
-
-    <div class="addItem-content contentbox" id="addItem">
-        <h2>Item toevoegen</h2>
-        <form action="/api/briefings" method="POST">
-
-         <!-- get email, briefing_id and media_ids from POST request --> 
-            <p>
-                <input autofocus autocomplete="off" placeholder="Briefing ID" name="briefing_id">
-            </p>
-            <p>
-                <input placeholder="E-mail" name="email">
-            </p>
-
-            <div class="media-ids-container">
-                <div class="media-ids-added">
-                </div>
-                <div class="media-ids-input">
-                    <input type="text" placeholder="Media ID" class="mediaIdValue">
-                    <input type="button" value="Voeg Media ID toe" @click="addMediaId" >
-                     <!-- v-on:keyup.enter.prevent="addMediaId"
-                          would be nice but it submits the form and can't seem to prevent it --> 
-                </div>
-            </div>     
-
-            <input type="hidden" name="media_ids" id="media_ids">
-            <input class="submitbtn" type="submit" value="Voeg item toe">
-        </form>
-    </div>
-
-    <div class="toast contentbox">
-    </div>
-
-    <div class="addItem-icon" @click="showAddItemContent">
-        <a href="#" @click.prevent><span class="icon-plus-circled"></span></a>
-    </div>
-
-
-    <%- include('footer', {}); %>
-</div>

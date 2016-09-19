@@ -40,8 +40,8 @@ $(document).ready(function () {
 
                 
             },
-            addMediaId: function() {
-                var val = $('.mediaIdValue').val();
+            addMediaId: function(val) {
+               // var val = $('.mediaIdValue').val();
                 $('.media-ids-added').append('<span>' + val + '</span>');
 
                 // Add to hidden field for POST request
@@ -51,6 +51,13 @@ $(document).ready(function () {
                 // UX: empty input field text and refocus
                 $('.mediaIdValue').val('').focus();
 
+            },
+            addItem: function() {
+                $.post('/api/briefings/', { 
+                    briefing_id: 'yo',
+                    email: 'email',
+                    media_ids: 'test,ja,nee',
+                 });
             }
         }
     });

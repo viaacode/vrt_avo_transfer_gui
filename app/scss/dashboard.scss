@@ -8,15 +8,19 @@
 }
 
 .briefingItem {
-    .briefing_title {    
+    .briefing_header {    
         width:100%;
         height:2.2rem;
 
-        .briefing_id {
+        .briefing_title {
             float:left;
             font-size:2.2rem;
             font-weight:800;
             text-transform:capitalize;
+        }
+
+        small {
+            font-size:1.6rem;
         }
 
         .briefing_expand {

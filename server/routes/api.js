@@ -17,6 +17,8 @@ module.exports = function (router, config, request) {
             console.log(media_ids[i]);
         }
 
+        return res.send(jsend.success());
+
     }
 
     function briefings(req, res, next) {
