@@ -24,21 +24,24 @@
             </div>
         </div>
 
-        <div class="addItem-content contentbox" id="addItem">
+        <div class="addItem-content" id="addItem">
             <h2>Item toevoegen</h2>
+            <a href="#" class="close_x" onclick="hideAddItemContent()">x</a>
             <form>
 
             <!-- get email, briefing_id and media_ids from POST request --> 
                 <p>
-                    <input autofocus autocomplete="off" placeholder="Briefing ID" id="briefing_id">
+                    <input type="text" autofocus autocomplete="off" placeholder="Briefing ID" id="briefing_id">
+                    <input type="button" value="Valideren" id="btn_validate">
                 </p>
                 <p>
                     <input placeholder="E-mail" id="email" disabled>
                 </p>
-
+                <p>
+                    <input placeholder="Titel" id="briefing_title" disabled>
+                </p
                 <div class="media-ids-container">
-                    <div class="media-ids-added">
-                    </div>
+                    <div class="media-ids-added"></div>
                     <!--<div class="media-ids-input">
                         <input type="text" placeholder="Media ID" id="mediaIdValue">
                         <input type="button" value="Voeg Media ID toe" @click="addMediaId('test')" > 
@@ -52,11 +55,6 @@
 
         <div class="toast contentbox">
         </div>
-
-        <div class="addItem-icon" @click="showAddItemContent">
-            <a href="#" @click.prevent><span class="icon-plus-circled"></span></a>
-        </div>
-
 
         <%- include('footer', {}); %>
     </div>

@@ -22,23 +22,13 @@ $(document).ready(function () {
             toggleContent: function(e) {
                 $(e.target).closest('.briefingItem').find('.briefing_content').toggle(150);
             },
-            showAddItemContent: function() {
-                $('.addItem-content').show(300, function() {
-                    $('html, body').animate({
-                        scrollTop: ($('#addItem').offset().top)
-                    },500);
-                });
-                $('.addItem-icon').hide(300);
-            },
             // Toast for if we would not redirect to other page
             submitAddItem: function() {
                 $('.addItem-content').hide(300);
                 $('.addItem-icon').show(300);
 
                 $('.toast').text('Item toegevoegd');
-                $('.toast').slideDown(300).delay(3000).slideUp(300);
-
-                
+                $('.toast').slideDown(300).delay(3000).slideUp(300);            
             },
             addMediaId: function(val) {
                // var val = $('.mediaIdValue').val();

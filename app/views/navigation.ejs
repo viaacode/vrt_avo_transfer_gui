@@ -1,16 +1,21 @@
 <header>
     <ul class="navigation">
         <!-- <li class="logo"><a href="/"><img src="/public/assets/logo2.svg"></a></li> -->
-
-        <li class="menuitem-user right" onclick="showmenu()">
+        <li class="menuitem-user" onclick="showmenu()">
            <div class="user">        
-                <span class="icon-user dropbtn"></span>
+                <a href="#"><span class="icon-user dropbtn"></span></a>
            </div>
            <div class="user-container" id="user-container-id">
                 <p>Welkom terug, <strong><%= username %></strong>!</p>
                 <a href="#">Account</a>
                 <a href="/logout">Log uit</a>
            </div>
-        </li>    
+        </li>  
+
+        <li class="menuitem-user">
+            <div class="addItem-icon" onclick="showAddItemContent()">
+                <a href="#" @click.prevent><span class="icon-plus-circled"></span></a>
+            </div>
+        </li>  
     </ul>
 </header>
