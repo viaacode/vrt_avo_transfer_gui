@@ -53,6 +53,14 @@ function showmenu() {
     document.getElementById("user-container-id").classList.toggle("show");
 }
 
+function showAddItemContent() {
+    $('.addItem-content').show(500);
+}
+
+function hideAddItemContent() {
+    $('.addItem-content').hide(500);
+}   
+
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
     if (!event.target.matches('.dropbtn')) {
