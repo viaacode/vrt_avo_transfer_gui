@@ -9,13 +9,12 @@ module.exports = function (router, config, request) {
 
 
     function addbriefing(req, res, next) {
-        debugger;
-
         var briefing_id = req.body.briefing_id;
+        var briefing_title = req.body.briefing_title;
         var email = req.body.email;
         var media_ids = req.body.media_ids;
 
-        console.log("post received: " + briefing_id + ", "  + email);
+        console.log("post received: " + briefing_id + ", "  + briefing_title + ", " + email);
         console.log("Media ids");
         for(var i = 0; i < media_ids.length; i++) {
             console.log(media_ids[i]);

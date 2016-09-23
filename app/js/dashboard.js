@@ -12,8 +12,8 @@ $(document).ready(function () {
         data: {
             counter_media_ids: 0,
             errors: [],
-            newBriefing: '',
             briefings: [],
+            objFromVrt: {},
             //  briefingIds: []
         },
         created: function () {
@@ -47,6 +47,7 @@ $(document).ready(function () {
             startFetch: function() {
                 var postobj = {
                     briefing_id: $('#briefing_id').val(),
+                    briefing_title: $('#briefing_title').val(),
                     email: $('#email').val(),
                     media_ids: $('#media_ids').val().split(',')
                 };
@@ -60,6 +61,7 @@ $(document).ready(function () {
 
                 }).done(function(data) {
                     console.log(data);
+                    this.objFromVrt = data;
                 });
             }
         }
