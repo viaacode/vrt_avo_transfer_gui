@@ -2,6 +2,8 @@ $(document).ready(function () {
     // API endpoint
     // http://localhost:1234/api/briefings
 
+    jQuery.ajaxSettings.traditional = true; // to prevent jquery from adding '[]' to array keys in $.post object
+
     var runningAjaxCalls = [];
     var mediaIdsDelimiter = ',';
 
@@ -42,12 +44,23 @@ $(document).ready(function () {
                 $('.mediaIdValue').val('').focus();
 
             },
-            addItem: function() {
-                $.post('/api/briefings/', { 
-                    briefing_id: 'yo',
-                    email: 'email',
-                    media_ids: 'test,ja,nee',
-                 });
+            startFetch: function() {
+                var postobj = {
+                    briefing_id: $('#briefing_id').val(),
+                    email: $('#email').val(),
+                    media_ids: $('#media_ids').val().split(',')
+                };
+
+                $.post('/api/briefings/', postobj);
+
+            },
+            validate: function() {
+                $.post('/api/briefings/validate', {
+                    briefing_id: 'de id',
+
+                }).done(function(data) {
+                    console.log(data);
+                });
             }
         }
     });

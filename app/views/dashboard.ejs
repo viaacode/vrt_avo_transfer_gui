@@ -35,10 +35,10 @@
                     <input type="button" value="Valideren" id="btn_validate">
                 </p>
                 <p>
-                    <input placeholder="E-mail" id="email" disabled>
+                    <input placeholder="E-mail" id="email" disabled value="Test email">
                 </p>
                 <p>
-                    <input placeholder="Titel" id="briefing_title" disabled>
+                    <input placeholder="Titel" id="briefing_title" disabled value="test briefing title">
                 </p>
                 <div class="media-ids-container">
                     <div class="media-ids-added"></div>
@@ -48,8 +48,8 @@
                     </div>-->
                 </div>     
 
-                <input type="hidden" id="media_ids" id="media_ids">
-                <input class="submitbtn" type="button" value="Voeg item toe" @click="addItem">
+                <input type="hidden" id="media_ids" id="media_ids" value="id1,media_id2,test 3">
+                <input class="submitbtn" type="button" value="Start ophaling bij VRT" @click="startFetch">
             </form>
         </div>
 
