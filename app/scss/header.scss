@@ -3,7 +3,7 @@ header {
     height:10rem;
     width:100%;
     padding: 0;
-    margin: 0 0 3rem;
+    margin: 0 0 4rem;
 
     background-color:$grey-bg;
 
@@ -27,6 +27,15 @@ header {
 
         .search-sort {
             float:left;
+
+            input {
+                margin-right:2rem;
+            }
+
+            .icon-search {
+                position:relative;
+                right:4.5rem;
+            }
         }
 
         .menuitem-user {

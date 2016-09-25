@@ -18,19 +18,11 @@ $(document).ready(function () {
         },
         created: function () {
             refreshView(this);
-            
+
         },
         methods: {
             toggleContent: function(e) {
                 $(e.target).closest('.briefingItem').find('.briefing_content').toggle(150);
-            },
-            // Toast for if we would not redirect to other page
-            submitAddItem: function() {
-                $('.addItem-content').hide(300);
-                $('.addItem-icon').show(300);
-
-                $('.toast').text('Item toegevoegd');
-                $('.toast').slideDown(300).delay(3000).slideUp(300);            
             },
             addMediaId: function(val) {
                // var val = $('.mediaIdValue').val();
@@ -77,7 +69,7 @@ $(document).ready(function () {
                 vueinstance.briefings = result.briefings;
 
             }
-        }));        
+        }));
     }
 
 

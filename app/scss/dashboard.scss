@@ -1,16 +1,14 @@
 .contentbox {
-    background: #fff;
-    padding: 2rem;
-    width:98%;
-    margin:0 1% 4rem;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 15px 20px 0 rgba(0, 0, 0, 0.1);
-
+    width:100%;
+    overflow:auto;
+    margin:0;
 }
 
 .briefingItem {
-    .briefing_header {    
+    .briefing_header {
         width:100%;
-        height:2.2rem;
+        overflow:auto;
+        padding:1rem 2rem;
 
         .briefing_title {
             float:left;
@@ -19,16 +17,23 @@
             text-transform:capitalize;
         }
 
-        small {
-            font-size:1.6rem;
-        }
-
         .briefing_expand {
-            float:right;
+            width:4%;
+            float:left;
             font-size:1.6rem;
             padding:0 1rem;
         }
 
+        .briefing_col {
+            width:24%;
+            float:left;
+        }
+
+        &.first {
+            background-color:$grey-dark;
+            color:$white;
+            font-size:1.6rem;
+        }
     }
 
     .briefing_content {
@@ -62,7 +67,7 @@
                 &:first-child {
                     border-top:1px solid $grey-lighterer;
                     font-weight:800;
-                    &:hover { 
+                    &:hover {
                         background-color:#fff;
                     }
                 }
@@ -89,7 +94,7 @@
 }
 
 .addItem-content {
-    display:none;     
+    display:none;
     overflow:hidden;
     position:absolute;
     top:0;
@@ -104,7 +109,7 @@
         font-weight:800;
         margin-bottom:2rem;
         display:inline-block;
-    }    
+    }
 
     .close_x {
         float:right;
@@ -115,7 +120,7 @@
         clear:both;
         float:left;
         display:block;
-  
+
     }
 }
 
