@@ -23,7 +23,6 @@
         .briefing_expand {
             width:4%;
             float:left;
-            font-size:1.6rem;
             padding:0 1rem;
         }
 
@@ -49,11 +48,13 @@
 
             &:hover {
                 background-color:$grey-dark;
+                cursor:default;
             }
         }
 
         &:hover {
             background-color:$grey-lighterer;
+            cursor:pointer;
         }
     }
 
