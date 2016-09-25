@@ -1,0 +1,37 @@
+<header>
+    <div class="toolbar">
+        <div class="cont">
+            <div class="search-sort">
+                <input type="text" id="txt-search" />
+                <select class="" name="">
+                    <option value="Sorteren op">option</option>
+
+                </select>
+            </div>
+
+            <div class="menuitem-user" onclick="showmenu()">
+               <div class="user">
+                    <a href="#"><span class="icon-user dropbtn"></span></a>
+               </div>
+               <div class="user-container" id="user-container-id">
+                    <p>Welkom terug, <strong><%= username %></strong>!</p>
+                    <a href="#">Account</a>
+                    <a href="/logout">Log uit</a>
+               </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu">
+        <div class="cont">
+            <ul>
+                <li><a href="#" class="active">Vooruitgang</a></li>
+                <li><a href="#">Voltooid</a></li>
+                <li class="addItem-icon" onclick="showAddItemContent()"><a href="#">Briefing toevoegen</a></li>
+            </ul>            
+        </div>
+
+    </div>
+
+
+</header>

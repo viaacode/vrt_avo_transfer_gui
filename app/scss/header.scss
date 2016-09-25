@@ -1,0 +1,167 @@
+/* Navigation menu */
+header {
+    height:10rem;
+    width:100%;
+    padding: 0;
+    margin: 0;
+
+    background-color:$grey-bg;
+
+    .cont {
+        padding: 0 1rem;
+        width: 100%;
+
+        @media (min-width:960px) {
+            width: 960px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+    }
+
+    .toolbar {
+        width:100%;
+
+        height: 4rem;
+        line-height: 4rem;
+
+        border-bottom:1px solid $grey_lighterer;
+
+        .search-sort {
+            float:left;
+        }
+
+        .menuitem-user {
+            float:right;
+            padding:0.25rem 0 0 0;
+
+            .user { // The icon container
+                border-radius:50%;
+                width: 3rem;
+                height: 3rem;
+                line-height: 3rem;
+
+                font-size: 1.8rem;
+                text-align: center;
+
+                background-color:$orange;
+                box-shadow:1px 1px 2px 0 rgba(0, 0, 0, 0.25);
+
+                transition: 0.2s ease-in-out;
+                text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.25);
+            }
+        }
+
+
+        .menuitem-user:hover .user, .menuitem-user:active .user {
+            background-color:$orange-lighter;
+        }
+    }
+
+    .menu {
+        width:100%;
+        height: 6rem;
+        line-height: 6rem;
+        border-bottom:1px solid $grey_lighterer;
+
+        ul {
+            height: 6rem;
+            li {
+                display:inline-block;
+                margin-right:5rem;
+                font-size:1.8rem;
+                font-weight:600;
+
+                a {
+                    transition:0.2s;
+                    color:$textcolor;
+
+                    &.active, &:hover {
+                        color:$orange;
+                        text-decoration:underline;
+
+                    }
+                }
+
+                &.addItem-icon {
+                    clear:both;
+                    float:right;
+                    margin-right:0;
+                }
+            }
+        }
+
+    }
+
+}
+
+.logo {
+    padding: 0;
+    position: absolute;
+    left: 1em;
+    height:7.5rem;
+    width:100%;
+    /*display:block;*/
+    /*margin: 0 auto;*/
+}
+
+
+
+
+
+
+
+
+.icon-user {
+    color:$almostwhite;
+}
+
+// The content that pops up when user icon is clicked
+.user-container {   // The popup menu
+    border: 1px solid $grey-light;
+
+    position:absolute;
+    z-index:100;
+    top: 6.2rem;
+    right: 0;
+
+    background-color:$almostwhite;
+    color:$textcolor;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.24);
+
+    padding: 1rem;
+    width: 24rem;
+    display:none;
+
+    p {
+        font-size:1.8rem;
+        margin-bottom:2rem;
+    }
+
+    a {
+        display:block;
+        margin: 0 auto 1rem auto;
+
+        font-size:1.8rem;
+
+        height:3rem;
+        line-height:2rem;
+        text-align:center;
+        transition: .2s ease-in-out;
+
+        font-family:$viaafont;
+
+        &:hover {
+            border-bottom: 1px solid $orange;
+        }
+
+        &:last-child {
+            margin-bottom:0;
+        }
+    }
+
+}
+
+.show {
+    display:block;
+}
