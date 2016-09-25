@@ -3,7 +3,7 @@ header {
     height:10rem;
     width:100%;
     padding: 0;
-    margin: 0;
+    margin: 0 0 3rem;
 
     background-color:$grey-bg;
 
@@ -21,10 +21,8 @@ header {
 
     .toolbar {
         width:100%;
-
         height: 4rem;
         line-height: 4rem;
-
         border-bottom:1px solid $grey_lighterer;
 
         .search-sort {
@@ -62,15 +60,16 @@ header {
         width:100%;
         height: 6rem;
         line-height: 6rem;
-        border-bottom:1px solid $grey_lighterer;
+        //border-bottom:1px solid $grey_lighterer;
+        box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.25);
 
         ul {
             height: 6rem;
+
             li {
                 display:inline-block;
                 margin-right:5rem;
                 font-size:1.8rem;
-                font-weight:600;
 
                 a {
                     transition:0.2s;
@@ -79,7 +78,9 @@ header {
                     &.active, &:hover {
                         color:$orange;
                         text-decoration:underline;
-
+                    }
+                    &:hover {
+                        color:$orange-lighter;
                     }
                 }
 
@@ -87,6 +88,16 @@ header {
                     clear:both;
                     float:right;
                     margin-right:0;
+
+                    a {
+                        display:inline;
+                        color:$almostwhite;
+                        margin-right:0;
+
+                        &:hover {
+                            text-decoration:none;
+                        }
+                    }
                 }
             }
         }
@@ -106,12 +117,6 @@ header {
 }
 
 
-
-
-
-
-
-
 .icon-user {
     color:$almostwhite;
 }
@@ -122,8 +127,25 @@ header {
 
     position:absolute;
     z-index:100;
-    top: 6.2rem;
+    top: 3.5rem;
     right: 0;
+
+    // This is quite ugly, but this container needs absolute positioning
+    @media (min-width:1200px) {
+        right:13rem;
+    }
+    @media (min-width:1500px) {
+        right:27rem;
+    }
+    @media (min-width:1700px) {
+        right:37rem;
+    }
+    @media (min-width:1900px) {
+        right:47rem;
+    }
+    @media (min-width:2100px) {
+        right:57rem;
+    }
 
     background-color:$almostwhite;
     color:$textcolor;
