@@ -23,6 +23,10 @@ $(document).ready(function () {
         methods: {
             toggleContent: function(e) {
                 $(e.target).closest('.briefingItem').find('.briefing_content').toggle(150);
+
+                $(e.target).closest('.briefingItem').find('.briefing_expand span').toggleClass('icon-down-open');
+                $(e.target).closest('.briefingItem').find('.briefing_expand span').toggleClass('icon-up-open');
+
             },
             addMediaId: function(val) {
                // var val = $('.mediaIdValue').val();
