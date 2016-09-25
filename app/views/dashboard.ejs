@@ -20,14 +20,8 @@
         </div>
 
         <div class="briefing_content">
-            <p>Door {{ briefing.email }} op {{ briefing.reception_date }}</p>
-
+            <p>Toegevoegd op {{ briefing.reception_date }}</p>
             <table>
-                <tr>
-                    <td>Media ID</td>
-                    <td>Media Type</td>
-                    <td>Status</td>
-                </tr>
                 <tr v-for="item in briefing.media_ids">
                     <td>{{ item.media_id }}</td>
                     <td>{{ item.media_type }}</td>
@@ -36,6 +30,8 @@
             </table>
         </div>
     </div>
+
+    <div class="briefingItem contentbox"><div class="briefing_header last"></div></div> <!-- Border of the last item.. -->
 
     <div class="addItem-content" id="addItem">
         <h2>Item toevoegen</h2>
