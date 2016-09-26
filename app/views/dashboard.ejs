@@ -9,25 +9,27 @@
         </div>
     </div>
 
-    <div v-for="briefing in briefings" class="briefingItem contentbox">
+    <div id="briefingItemList">
+        <div v-for="briefing in briefings" class="briefingItem contentbox">
 
-        <div class="briefing_header" @click="toggleContent">
-            <div class="briefing_col">{{ briefing.briefing_title | capitalize }}</div>
-            <div class="briefing_col">{{ briefing.email }}</div>
-            <div class="briefing_col">{{ briefing.briefing_id }}</div>
-            <div class="briefing_col">Vooruitgang</div>
-            <div class="briefing_expand"><span class="icon-down-open"></span></div>
-        </div>
+            <div class="briefing_header" @click="toggleContent">
+                <div class="briefing_col">{{ briefing.briefing_title | capitalize }}</div>
+                <div class="briefing_col">{{ briefing.email }}</div>
+                <div class="briefing_col">{{ briefing.briefing_id }}</div>
+                <div class="briefing_col">Vooruitgang</div>
+                <div class="briefing_expand"><span class="icon-down-open"></span></div>
+            </div>
 
-        <div class="briefing_content">
-            <p>Toegevoegd op {{ briefing.reception_date | formatDate }}</p>
-            <table>
-                <tr v-for="item in briefing.media_ids">
-                    <td>{{ item.media_id }}</td>
-                    <td>{{ item.media_type }}</td>
-                    <td>{{ item.status }}</td>
-                </tr>
-            </table>
+            <div class="briefing_content">
+                <p>Toegevoegd op {{ briefing.reception_date | formatDate }}</p>
+                <table>
+                    <tr v-for="item in briefing.media_ids">
+                        <td>{{ item.media_id }}</td>
+                        <td>{{ item.media_type }}</td>
+                        <td>{{ item.status }}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 

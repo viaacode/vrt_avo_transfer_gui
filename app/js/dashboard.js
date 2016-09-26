@@ -62,6 +62,7 @@ $(document).ready(function () {
                     this.objFromVrt = data;
                 });
             }
+
         },
         filters: {
             formatDate: function(date) {
@@ -82,6 +83,21 @@ $(document).ready(function () {
             }
         }));
     }
+
+    // Search through every briefingItem its complete html (compare the lowercase to search box lowercase)
+    // If matching -> show and expand the briefingItem; if not -> hide it
+    $('#txt-search').keyup(function() {
+        $('#briefingItemList .briefingItem').each(function() {
+            if($(this).html().toLowerCase().indexOf($('#txt-search').val().toLowerCase()) >= 0) {
+                $(this).show();
+                $(this).find('.briefing_content').show();   // Expand all items that contain a match
+            }
+            else $(this).hide();
+
+            // if($(this).is(':contains("' + $('#txt-search').val() + '")')) $(this).show();
+            // else $(this).hide();
+        });
+    });
 
 
 
