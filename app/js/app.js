@@ -46,7 +46,7 @@ function ajaxcall(url, done) {
 function toggle(item) {
     var i = document.getElementById(item);
     if(i.style.display == 'block') i.style.display = 'none';
-    else i.style.display = 'block';   
+    else i.style.display = 'block';
 }
 
 function showmenu() {
@@ -59,7 +59,7 @@ function showAddItemContent() {
 
 function hideAddItemContent() {
     $('.addItem-content').hide(500);
-}   
+}
 
 // Close the dropdown if the user clicks outside of it
 window.onclick = function(event) {
