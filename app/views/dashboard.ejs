@@ -20,7 +20,7 @@
         </div>
 
         <div class="briefing_content">
-            <p>Toegevoegd op {{ briefing.reception_date }}</p>
+            <p>Toegevoegd op {{ briefing.reception_date | formatDate }}</p>
             <table>
                 <tr v-for="item in briefing.media_ids">
                     <td>{{ item.media_id }}</td>

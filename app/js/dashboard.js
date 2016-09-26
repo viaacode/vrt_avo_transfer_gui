@@ -62,6 +62,11 @@ $(document).ready(function () {
                     this.objFromVrt = data;
                 });
             }
+        },
+        filters: {
+            formatDate: function(date) {
+                return moment(date).format('DD/MM/Y [om] h:mm:ss');
+            }
         }
     });
 
