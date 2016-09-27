@@ -79,19 +79,24 @@
         }
 
         table {
-            width:100%;
-            max-width:50rem;
+            //max-width:50rem;
+            width:calc(100% - 4rem - 4%);
+
+            margin-left:2rem;
+
 
             tr {
+
                 border-top:1px solid $grey-lighterer;
+                //display:block;
 
                 &:hover {
                     background-color:$grey-lighterer;
                 }
             }
             td {
-                padding:1rem 2rem;
-                width:33%;
+                padding:1rem 0;
+                width:25%;
             }
         }
     }

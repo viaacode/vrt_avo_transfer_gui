@@ -24,6 +24,7 @@
                 <p>Toegevoegd op {{ briefing.reception_date | formatDate }}</p>
                 <table>
                     <tr v-for="item in briefing.media_ids">
+                        <td></td>
                         <td>{{ item.media_id }}</td>
                         <td>{{ item.media_type }}</td>
                         <td>{{ item.status }}</td>
