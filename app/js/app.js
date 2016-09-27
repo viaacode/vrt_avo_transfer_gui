@@ -54,11 +54,13 @@ function showmenu() {
 }
 
 function showAddItemContent() {
-    $('.addItem-content').show(500);
+    $('.addItem-content').fadeIn(500);
+    $('#form-background').fadeIn(500);
 }
 
 function hideAddItemContent() {
-    $('.addItem-content').hide(500);
+    $('.addItem-content').fadeOut(500);
+    $('#form-background').fadeOut(500);
 }
 
 // Close the dropdown if the user clicks outside of it
