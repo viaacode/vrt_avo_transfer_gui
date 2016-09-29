@@ -3,12 +3,12 @@ var moment = require('moment');
 var jsend = require('../util/jsend');
 
 module.exports = function (router, config, request) {
-    router.get('/api/briefings/:id?', briefings);
-    router.post('/api/briefings', addbriefing);
+    router.get('/api/briefings/:id?', getBriefings);
+    router.post('/api/briefings', addBriefing);
+    router.post('/api/briefings/validate', validateBriefing);
 
 
-
-    function addbriefing(req, res, next) {
+    function addBriefing(req, res, next) {
         var briefing_id = req.body.briefing_id;
         var briefing_title = req.body.briefing_title;
         var email = req.body.email;
@@ -24,7 +24,7 @@ module.exports = function (router, config, request) {
 
     }
 
-    function briefings(req, res, next) {
+    function getBriefings(req, res, next) {
         if (!req.params.id) req.params.id = '';
         var url = config.muleHost + '/briefings/' + req.params.id;
 
@@ -115,6 +115,37 @@ module.exports = function (router, config, request) {
         res
             .append('Content-Type', 'application/json')
             .send(jsend.success(data));
+    }
+
+    function validateBriefing(req, res, next) {
+        var url = config.muleHost + '/briefings/validate';
+
+       // Configure the request
+       var headers = {
+            'User-Agent':       'Super Agent/0.0.1',
+            'Content-Type':     'application/json',
+        }
+
+        var options = {
+            url: url,
+            method: 'POST',
+            headers: headers,
+            json: req.body
+        }
+
+        request(options, function (error, response, body) {
+            if (body && body.code == 500) {
+                res.
+                    append('Content-Type', 'application/json')
+                    .send(jsend.error(body.code, body.error));
+            }
+            else if (body && !error && response.statusCode == 200) {
+                // Print out the response body
+                res
+                    .append('Content-Type', 'application/json')
+                    .send(jsend.success(body));
+            }
+        })
     }
 
     function forwardRequestCall(url, res, next, parse) {

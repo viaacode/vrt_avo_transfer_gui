@@ -13,8 +13,9 @@ $(document).ready(function () {
             counter_media_ids: 0,
             errors: [],
             briefings: [],
-            objFromVrt: {},
-            //  briefingIds: []
+            skryvUitvoerder: "",
+            skryvBriefingTitel: "",
+            skryvMediaIds: "",
         },
         created: function () {
             refreshView(this);
@@ -28,37 +29,36 @@ $(document).ready(function () {
                 $(e.target).closest('.briefingItem').find('.briefing_expand span').toggleClass('icon-up-open');
 
             },
-            addMediaId: function(val) {
-               // var val = $('.mediaIdValue').val();
-                $('.media-ids-added').append('<span>' + val + '</span>');
+            validate: function() {
+                var briefing_id = $('#briefing_id').val();
+                var self = this;
 
-                // Add to hidden field for POST request
-                if($('#media_ids').val() === '') $('#media_ids').val(val);    // If first item, don't add delimiter in front of it
-                else $('#media_ids').val($('#media_ids').val() + mediaIdsDelimiter + val);
-
-                // UX: empty input field text and refocus
-                $('.mediaIdValue').val('').focus();
-
+                $.post({
+                        url: '/api/briefings/validate',
+                        //timeout: 3000 // 3 seconds
+                        }, 
+                        {briefing_id: briefing_id}
+                        ).done(function(data) {
+                            $('.error').empty();
+                            self.skryvUitvoerder = data.data.uitvoerder;
+                            self.skryvBriefingTitel = data.data.briefing_titel;
+                            self.skryvMediaIds = data.data.media_ids;
+                            $('.skryvOutcome').css("visibility", 'visible');
+                            $('.submitbtn').css("visibility", 'visible');
+                        })
+                        .fail(function() {
+                            $('.error').text('Briefing ID niet gevonden in Skryv.');
+                        });
             },
             startFetch: function() {
                 var postobj = {
                     briefing_id: $('#briefing_id').val(),
-                    briefing_title: $('#briefing_title').val(),
-                    email: $('#email').val(),
-                    media_ids: $('#media_ids').val().split(',')
+                    briefing_titel: this.skryvBriefingTitel,
+                    uitvoerder: this.skryvUitvoerder,
+                    media_ids: this.skryvMediaIds
                 };
-
+                console.log(postobj);
                 $.post('/api/briefings/', postobj);
-
-            },
-            validate: function() {
-                $.post('/api/briefings/validate', {
-                    briefing_id: 'de id',
-
-                }).done(function(data) {
-                    console.log(data);
-                    this.objFromVrt = data;
-                });
             }
         },
         filters: {

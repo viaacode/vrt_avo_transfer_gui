@@ -36,30 +36,24 @@
 
     <div class="briefingItem contentbox"><div class="briefing_header last"></div></div> <!-- Border of the last item.. -->
     <div class="addItem-content" id="addItem">
-        <h2>Item toevoegen</h2>
+        <h2>Briefing toevoegen</h2>
         <a href="#" class="close_x" onclick="hideAddItemContent()">x</a>
-        <form>
 
-        <!-- get email, briefing_id and media_ids from POST request -->
+        <form>
             <p>
                 <input type="text" autofocus autocomplete="off" placeholder="Briefing ID" id="briefing_id">
-                <input type="button" value="Valideren" id="btn_validate">
+                <input type="button" value="Valideren" id="btn_validate" @click="validate">
             </p>
-            <p>
-                <input placeholder="E-mail" id="email" disabled value="Test email">
-            </p>
-            <p>
-                <input placeholder="Briefing titel" id="briefing_title" disabled value="test briefing title">
-            </p>
-            <div class="media-ids-container">
-                <div class="media-ids-added"></div>
-                <!--<div class="media-ids-input">
-                    <input type="text" placeholder="Media ID" id="mediaIdValue">
-                    <input type="button" value="Voeg Media ID toe" @click="addMediaId('test')" >
-                </div>-->
-            </div>
+            <div class="skryvOutcome">
+                <p>Uitvoerder: {{ skryvUitvoerder }}</p>
+                <p>Titel: {{ skryvBriefingTitel }}</p>
 
-            <input type="hidden" id="media_ids" id="media_ids" value="id1,media_id2,test 3">
+                <p>Bevat {{ skryvMediaIds.length }} items:</p>
+                <ul v-for="mediaItem in skryvMediaIds">
+                    <li>{{ mediaItem.media_id }} [{{ mediaItem.media_type}}]</li>
+                </ul>
+            </div>
+            <p class="error"></p>
             <input class="submitbtn" type="button" value="Start ophaling bij VRT" @click="startFetch">
         </form>
     </div>

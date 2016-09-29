@@ -156,7 +156,15 @@
         clear:both;
         float:left;
         display:block;
+        visibility: hidden;
+    }
 
+    .error {
+        color: red;
+    }
+
+    .skryvOutcome {
+        visibility: hidden;
     }
 }
 
