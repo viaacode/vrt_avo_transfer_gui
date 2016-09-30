@@ -28,93 +28,49 @@ module.exports = function (router, config, request) {
         if (!req.params.id) req.params.id = '';
         var url = config.muleHost + '/briefings/' + req.params.id;
 
-        debugger;
-        //forwardRequestCall(url, res, next);
+        forwardRequestCall(url, res, next);
 
-        var data = {
-            "briefings": [
-                {
-                    "briefing_id": "briefing 1",
-                    "briefing_title": "Beeldmateriaal test",
-                    "reception_date": "2016-08-25T10:52:37",
-                    "email": "hendrik@viaa.be",
-                    "media_ids": [
-                        {
-                            "media_id": "AIM10022093",
-                            "media_type": "video",
-                            "status": "QUEUED",
-                            "retry_count": null,
-                        },
-                        {
-                            "media_id": "AIM10022093",
-                            "media_type": "video",
-                            "status": "REQUESTED",
-                            "retry_count": null,
-                        }]
-                },
-                {
-                    "briefing_id": "briefing 2",
-                    "briefing_title": "Beeldmateriaal test",
-                    "email": "brecht.vandevyvere@viaa.be",
-                    "reception_date": "2016-08-25T10:52:37",
-                    "media_ids": [
-                        {
-                            "media_id": "AIM10022093",
-                            "media_type": "video",
-                            "status": "QUEUED",
-                            "retry_count": null,
-                        }]
-                }]
-        };
-
-
-
-
-        // {
-        //     "briefing123": [
-        //       {
-        //         "briefing_title": "Beeldmateriaal test",
-        //         "media_type": "video",
-        //         "retry_count": null,
-        //         "media_id": "AIM10022093",
-        //         "briefing_id": "briefing123",
-        //         "email": "brecht.vandevyvere@viaa.be",
-        //         "status": "QUEUED",
-        //         "reception_date": "2016-08-25T10:52:37",
-        //         "id": 2
-        //       },
-        //       {
-        //         "briefing_title": "Beeldmateriaal test",
-        //         "media_type": "audio",
-        //         "retry_count": null,
-        //         "media_id": "AIM10022092",
-        //         "briefing_id": "briefing123",
-        //         "email": "brecht.vandevyvere@viaa.be",
-        //         "status": "REQUESTED",
-        //         "reception_date": "2016-08-25T10:52:37",
-        //         "id": 3
-        //       }
-        //     ]
-        //   },
-        //   {
-        //     "briefing456": [
-        //       {
-        //         "briefing_title": "joo",
-        //         "media_type": "video",
-        //         "retry_count": null,
-        //         "media_id": "AIM1002",
-        //         "briefing_id": "briefing456",
-        //         "email": "brecht.vandevyvere@viaa.be",
-        //         "status": "RECONCILED",
-        //         "reception_date": "2016-08-25T10:52:37",
-        //         "id": 4
-        //       }
-        //     ]
-        //   }];
-
-        res
-            .append('Content-Type', 'application/json')
-            .send(jsend.success(data));
+        // var data = {
+        //     "briefings": [
+        //         {
+        //             "briefing_id": "briefing 1",
+        //             "briefing_titel": "Beeldmateriaal test",
+        //             "reception_date": "2016-08-25T10:52:37",
+        //             "uitvoerder": "hendrik@viaa.be",
+        //             "toegevoegd_door": "hendrik@viaa.be",
+        //             "aantal_bezig": 2,
+        //             "totaal": 2,
+        //             "media_ids": [
+        //                 {
+        //                     "media_id": "AIM10022093",
+        //                     "media_type": "video",
+        //                     "status": "QUEUED",
+        //                 },
+        //                 {
+        //                     "media_id": "AIM10022093",
+        //                     "media_type": "video",
+        //                     "status": "REQUESTED",
+        //                 }]
+        //         },
+        //         {
+        //             "briefing_id": "briefing 2",
+        //             "briefing_titel": "Beeldmateriaal test",
+        //             "uitvoerder": "brecht.vandevyvere@viaa.be",
+        //             "toegevoegd_door": "brecht.vandevyvere@viaa.be",
+        //             "reception_date": "2016-08-25T10:52:37",
+        //             "aantal_bezig": 0,
+        //             "totaal": 1,
+        //             "media_ids": [
+        //                 {
+        //                     "media_id": "AIM10022093",
+        //                     "media_type": "video",
+        //                     "status": "COMPLETED",
+        //                 }]
+        //         }]
+        // };
+        // res
+        //     .append('Content-Type', 'application/json')
+        //     .send(jsend.success(data));
     }
 
     function validateBriefing(req, res, next) {

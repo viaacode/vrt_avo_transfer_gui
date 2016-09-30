@@ -13,10 +13,10 @@
         <div v-for="briefing in briefings" class="briefingItem contentbox">
 
             <div class="briefing_header" @click="toggleContent">
-                <div class="briefing_col">{{ briefing.briefing_title | capitalize }}</div>
-                <div class="briefing_col">{{ briefing.email }}</div>
+                <div class="briefing_col">{{ briefing.briefing_titel | capitalize }}</div>
+                <div class="briefing_col">{{ briefing.uitvoerder }}</div>
                 <div class="briefing_col">{{ briefing.briefing_id }}</div>
-                <div class="briefing_col">Vooruitgang</div>
+                <div class="briefing_col">{{ briefing.totaal - briefing.aantal_bezig }} / {{ briefing.totaal }}</div>
                 <div class="briefing_expand"><span class="icon-down-open"></span></div>
             </div>
 
