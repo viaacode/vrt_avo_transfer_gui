@@ -10,16 +10,13 @@ $(document).ready(function () {
     new Vue({
         el: '#briefingApp',
         data: {
-            counter_media_ids: 0,
-            errors: [],
             briefings: [],
             skryvUitvoerder: "",
             skryvBriefingTitel: "",
-            skryvMediaIds: "",
+            skryvMediaIds: []
         },
         created: function () {
             refreshView(this);
-
         },
         methods: {
             toggleContent: function(e) {
@@ -27,7 +24,6 @@ $(document).ready(function () {
                 $(e.target).closest('.briefingItem').find('.briefing_header').children().toggleClass('strong');
                 $(e.target).closest('.briefingItem').find('.briefing_expand span').toggleClass('icon-down-open');
                 $(e.target).closest('.briefingItem').find('.briefing_expand span').toggleClass('icon-up-open');
-
             },
             validate: function() {
                 var briefing_id = $('#briefing_id').val();
@@ -51,14 +47,32 @@ $(document).ready(function () {
                         });
             },
             startFetch: function() {
+                var self = this;
+
                 var postobj = {
                     briefing_id: $('#briefing_id').val(),
                     briefing_titel: this.skryvBriefingTitel,
                     uitvoerder: this.skryvUitvoerder,
+                    toegevoegd_door: mijnVIAA.username,
                     media_ids: this.skryvMediaIds
                 };
                 console.log(postobj);
-                $.post('/api/briefings/', postobj);
+                $.post('/api/briefings/', JSON.stringify(postobj))
+                    .done(function(data) {
+                            $('.success').text('Briefing is gestart!');
+                            self.resetBriefingInput();
+                            refreshView(self);
+                        })
+                    .fail(function() {
+                        $('.error').text('Mislukt om briefing toe te voegen. Contacteer @brechtvdv');
+                    });
+            },
+            resetBriefingInput: function() {
+                $('.skryvOutcome').css("visibility", 'hidden');
+                $('.submitbtn').css("visibility", 'hidden');
+                this.skryvUitvoerder = "";
+                this.skryvBriefingTitel = "";
+                this.skryvMediaIds = [];
             }
         },
         filters: {
@@ -76,7 +90,6 @@ $(document).ready(function () {
             else {
                 errors = [];
                 vueinstance.briefings = result.briefings;
-
             }
         }));
     }

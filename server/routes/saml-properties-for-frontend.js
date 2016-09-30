@@ -9,16 +9,18 @@ module.exports = function (app, config) {
     if (req.user) {
       services = parseServices(req.user.apps) || {};
       organisationName = req.user.oNickname || '';
+      username = req.user.cn;
     } else {
       services = config.fakeServicesAvailable || {};
       organisationName = '';
+      username = 'anoniem';
     }
 
     var mijnVIAA = 'var mijnVIAA=mijnVIAA||{};mijnVIAA.isServiceAvailable=function(serviceName){return ' +
       JSON.stringify(services) +
       '[serviceName];};mijnVIAA.getOrganisationName=function(){return "' +
       organisationName +
-      '";};';
+      '";};mijnVIAA.username="' + username + '";'
 
     res.send(mijnVIAA);
   }

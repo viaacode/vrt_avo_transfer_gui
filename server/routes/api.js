@@ -9,19 +9,56 @@ module.exports = function (router, config, request) {
 
 
     function addBriefing(req, res, next) {
-        var briefing_id = req.body.briefing_id;
-        var briefing_title = req.body.briefing_title;
-        var email = req.body.email;
-        var media_ids = req.body.media_ids;
+        var obj = JSON.parse(Object.keys(req.body)[0]);
 
-        console.log("post received: " + briefing_id + ", "  + briefing_title + ", " + email);
+        var briefing_id = obj.briefing_id;
+        var briefing_titel = obj.briefing_titel;
+        var uitvoerder = obj.uitvoerder;
+        var toegevoegd_door = obj.toegevoegd_door;
+        var media_ids = obj.media_ids;
+
+        console.log("post received: " + briefing_id + ", "  + briefing_titel + ", " + uitvoerder);
         console.log("Media ids");
         for(var i = 0; i < media_ids.length; i++) {
-            console.log(media_ids[i]);
+            console.log(media_ids[i].media_id + ' [' + media_ids[i].media_type + ']');
         }
 
-        return res.send(jsend.success());
+        // briefing verzenden naar mule API
+        var url = config.muleHost + '/briefings/' + briefing_id;
 
+        var headers = {
+            'User-Agent':       'Super Agent/0.0.1',
+            'Content-Type':     'application/json',
+        }
+
+        var obj = {
+                "briefing_id" : briefing_id,
+                "briefing_titel" : briefing_titel,
+                "uitvoerder" :  uitvoerder,
+                "toegevoegd_door" : toegevoegd_door,
+                "media_ids" : media_ids
+            };
+
+        var options = {
+            url: url,
+            method: 'POST',
+            headers: headers,
+            json: obj
+        }
+
+        request(options, function (error, response, body) {
+            if (body && body.code == 500) {
+                res.
+                    append('Content-Type', 'application/json')
+                    .send(jsend.error(body.code, body.error));
+            }
+            else if (body && !error && response.statusCode == 200) {
+                // Print out the response body
+                res
+                    .append('Content-Type', 'application/json')
+                    .send(jsend.success(body));
+            }
+        });
     }
 
     function getBriefings(req, res, next) {

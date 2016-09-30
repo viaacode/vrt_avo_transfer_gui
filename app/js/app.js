@@ -61,6 +61,8 @@ function showAddItemContent() {
 function hideAddItemContent() {
     $('.addItem-content').fadeOut(500);
     $('#form-background').fadeOut(500);
+    $('.error').empty();
+    $('.success').empty();
 }
 
 // Close the dropdown if the user clicks outside of it
