@@ -36,6 +36,7 @@ $(document).ready(function () {
                         {briefing_id: briefing_id}
                         ).done(function(data) {
                             $('.error').empty();
+                            $('.success').empty();
                             self.skryvUitvoerder = data.data.uitvoerder;
                             self.skryvBriefingTitel = data.data.briefing_titel;
                             self.skryvMediaIds = data.data.media_ids;

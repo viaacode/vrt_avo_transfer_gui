@@ -2,7 +2,7 @@ var configEnvironments = require('./config/config');
 
 var request = require('request');
 
-var env = process.env.NODE_ENV || 'development';
+var env = process.env.NODE_ENV || 'qas';
 var config = configEnvironments(env);
 
 if (config.dummyRequest) {

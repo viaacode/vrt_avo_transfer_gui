@@ -13,7 +13,7 @@ function environment (name) {
 }
 
 var basedir = path.join(__dirname, '../../');
-var muleEndpoint = 'http://do-qas-esb-01.do.viaa.be:10005';
+var muleEndpoint = 'http://do-qas-esb-01.do.viaa.be:10002';
 
 // not used but example of all available properties
 var template = {
@@ -45,15 +45,15 @@ var template = {
 
 var qas = {
   // Mule endpoint
-  // muleHost: 'http://do-qas-esb-01.do.viaa.be:10005',
-  muleHost: 'http://localhost:10002',
+  muleHost: 'http://do-qas-esb-01.do.viaa.be:10002',
+  // muleHost: 'http://localhost:10002',
   // toggle to show api links on /api/docs
   showApiDocs: true,
   // general app settings
   app: {
     // used in console to tell which app is started
     name: 'VRT_AVO_TRANSFER',
-    port: process.env.PORT || 1234,
+    port: process.env.PORT || 8083,
     sessionSecret: process.env.SESSION_SECRET || 'VRT_AVO_TRANSFER'
   },
   paths: {
@@ -80,7 +80,7 @@ var authentication = {
     strategy: 'saml',
     saml: {
       // URL that goes from the Identity Provider -> Service Provider
-      callbackUrl: process.env.SAML_PATH || 'mijn-qas.viaa.be/login/callback',
+      callbackUrl: process.env.SAML_PATH || 'vat-qas.viaa.be/login/callback',
 
       // URL that goes from the Service Provider -> Identity Provider
       entryPoint: process.env.SAML_ENTRY_POINT || 'https://idp-qas.viaa.be/saml2/idp/SSOService.php',
@@ -89,7 +89,7 @@ var authentication = {
       logoutUrl: 'https://idp-qas.viaa.be/saml2/idp/SingleLogoutService.php',
 
       // Usually specified as `/shibboleth` from site root
-      issuer: process.env.ISSUER || 'passport-saml',
+      issuer: process.env.ISSUER || 'vat-qas.viaa.be',
 
       identifierFormat: null,
 
