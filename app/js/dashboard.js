@@ -39,6 +39,7 @@ $(document).ready(function () {
                             $('.error').empty();
                             $('.success').empty();
                             self.skryvUitvoerder = data.data.uitvoerder;
+                            self.skryvBriefingId = data.data.briefing_id;
                             self.skryvBriefingTitel = data.data.briefing_titel;
                             self.skryvMediaIdsVideo = data.data.media_ids_video;
                             self.skryvMediaIdsAudio = data.data.media_ids_audio;
@@ -53,7 +54,7 @@ $(document).ready(function () {
                 var self = this;
 
                 var postobj = {
-                    briefing_id: $('#briefing_id').val(),
+                    briefing_id: this.skryvBriefingId,
                     briefing_titel: this.skryvBriefingTitel,
                     uitvoerder: this.skryvUitvoerder,
                     toegevoegd_door: mijnVIAA.username,
