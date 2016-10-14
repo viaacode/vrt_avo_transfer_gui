@@ -113,8 +113,10 @@ module.exports = function (router, config, request) {
     function validateBriefing(req, res, next) {
         var url = config.muleHost + '/briefings/validate';
 
-       // Configure the request
-       var headers = {
+        console.log('executing forwardRequestCall(' + url + ')');
+
+        // Configure the request
+        var headers = {
             'User-Agent':       'Super Agent/0.0.1',
             'Content-Type':     'application/json',
         }

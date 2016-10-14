@@ -13,7 +13,8 @@ $(document).ready(function () {
             briefings: [],
             skryvUitvoerder: "",
             skryvBriefingTitel: "",
-            skryvMediaIds: []
+            skryvMediaIdsVideo: [],
+            skryvMediaIdsAudio: []
         },
         created: function () {
             refreshView(this);
@@ -39,7 +40,8 @@ $(document).ready(function () {
                             $('.success').empty();
                             self.skryvUitvoerder = data.data.uitvoerder;
                             self.skryvBriefingTitel = data.data.briefing_titel;
-                            self.skryvMediaIds = data.data.media_ids;
+                            self.skryvMediaIdsVideo = data.data.media_ids_video;
+                            self.skryvMediaIdsAudio = data.data.media_ids_audio;
                             $('.skryvOutcome').css("visibility", 'visible');
                             $('.submitbtn').css("visibility", 'visible');
                         })
@@ -55,7 +57,7 @@ $(document).ready(function () {
                     briefing_titel: this.skryvBriefingTitel,
                     uitvoerder: this.skryvUitvoerder,
                     toegevoegd_door: mijnVIAA.username,
-                    media_ids: this.skryvMediaIds
+                    media_ids: this.skryvMediaIdsVideo.concat(this.skryvMediaIdsAudio)
                 };
                 console.log(postobj);
                 $.post('/api/briefings/', JSON.stringify(postobj))
@@ -73,7 +75,8 @@ $(document).ready(function () {
                 $('.submitbtn').css("visibility", 'hidden');
                 this.skryvUitvoerder = "";
                 this.skryvBriefingTitel = "";
-                this.skryvMediaIds = [];
+                this.skryvMediaIdsVideo = [];
+                this.skryvMediaIdsAudio = [];
             }
         },
         filters: {

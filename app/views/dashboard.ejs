@@ -48,9 +48,12 @@
                 <p>Uitvoerder: {{ skryvUitvoerder }}</p>
                 <p>Titel: {{ skryvBriefingTitel }}</p>
 
-                <p>Bevat {{ skryvMediaIds.length }} items:</p>
-                <ul v-for="mediaItem in skryvMediaIds">
-                    <li>{{ mediaItem.media_id }} [{{ mediaItem.media_type}}]</li>
+                <p>Bevat {{ skryvMediaIds.length + skryvMediaIdsAudio.length }} items:</p>
+                <ul v-for="mediaItem in skryvMediaIdsVideo">
+                    <li>{{ mediaItem.media_id }} [video]</li>
+                </ul>
+                <ul v-for="mediaItem in skryvMediaIdsAudio">
+                    <li>{{ mediaItem.media_id }} [audio]</li>
                 </ul>
             </div>
             <p class="error"></p>
