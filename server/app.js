@@ -5,17 +5,24 @@ var cookieParser = require('cookie-parser');
 var passport = require('passport');
 var session = require('express-session');
 var favicon = require('serve-favicon');
+var path = require('path');
 
 var allowCorsMiddleware = require('./middleware/cors');
 var authMiddleware = require('./middleware/authentication');
 var delayMiddleware = require('./middleware/delay');
+
+var basedir = path.join(__dirname, '../');
+
+function pathFromApp (p) {
+  return path.join(basedir, 'app/', p || '.');
+}
 
 module.exports = function (config, request) {
 
     //region Initialize server
     var app = express();
     app.set('port', config.app.port);
-    app.set('views', config.paths.app('views'));
+    app.set('views', pathFromApp('views'));
     app.set('view engine', 'ejs');
     app.use(allowCorsMiddleware);
     app.use(morgan('dev'));
@@ -29,7 +36,7 @@ module.exports = function (config, request) {
     }));
     app.use(passport.initialize());
     app.use(passport.session());
-    app.use(favicon(config.paths.app('assets/favicon.png')));
+    app.use(favicon(pathFromApp('assets/favicon.png')));
     //endregion
 
 
@@ -55,7 +62,7 @@ module.exports = function (config, request) {
     // - front-end templates (redirect to login when not authenticated)
     require('./routes/front-end')(app, config, config.passport ? authMiddleware.redirect : authMiddleware.ignore);
     // - static files in the public folder
-    app.use('/public', express.static(config.paths.app('public')));
+    app.use('/public', express.static(pathFromApp('public')));
     //endregion
 
 

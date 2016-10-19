@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha server/test",
     "prestart": "grunt",
-    "start": "node server/server.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "jquery": "^3.1.0",
+    "js-yaml": "^3.6.1",
     "moment": "^2.14.1",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",

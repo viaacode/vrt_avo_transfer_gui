@@ -1,4 +1,0 @@
-{
-  "briefings": "/api/briefings",
-  "addbriefing": "/api/briefings/add"
-}
