@@ -1,4 +1,4 @@
-muleHost: 'http://do-qas-esb-01.do.viaa.be:10002'
+muleHost: 'http://do-prd-esb-01.do.viaa.be:10002'
 endpoints:
   briefings: '/api/briefings'
   addbriefing: '/api/briefings/add'
@@ -16,31 +16,31 @@ showErrors: false
 # log errors in server console
 logErrors: false
 # settings for authentication
+authenticationEnabled: false
 
 passport:
   strategy: 'saml'
   saml:
     # URL that goes from the Identity Provider -> Service Provider
-      callbackUrl: 'vat-qas.viaa.be/login/callback'
+      callbackUrl: 'vat.viaa.be/login/callback'
 
       # URL that goes from the Service Provider -> Identity Provider
+      #entryPoint: 'https://idp.viaa.be/saml2/idp/SSOService.php'
       entryPoint: 'https://idp-qas.viaa.be/saml2/idp/SSOService.php'
 
       # Url to logout from the Identity Provider
+      # logoutUrl: 'https://idp.viaa.be/saml2/idp/SingleLogoutService.php'
       logoutUrl: 'https://idp-qas.viaa.be/saml2/idp/SingleLogoutService.php'
 
       issuer: 'mijn-tst.viaa.be'
 
-      identifierFormat: null
-
-      # Service Provider private key
-      # decryptionPvk:
-
-      # Service Provider Certificate
-      # privateCert:
+      identifierFormat: null          
 
       # Identity Provider's public key
-      cert: MIICRjCCAa+gAwIBAgIJALRK8eVTg5r0MA0GCSqGSIb3DQEBBQUAMDwxEDAOBgNVBAMMB3NzbyBpZHAxDDAKBgNVBAsMA3FhczENMAsGA1UECgwEdmlhYTELMAkGA1UEBhMCYmUwHhcNMTUxMjIxMTEyNjAwWhcNMjAxMTI0MTEyNjAwWjA8MRAwDgYDVQQDDAdzc28gaWRwMQwwCgYDVQQLDANxYXMxDTALBgNVBAoMBHZpYWExCzAJBgNVBAYTAmJlMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNP1eVJIdVWXzHeDymWAz5O45YncphIl+V8daO/ltDB8v1OLwET3365Z5CUUO1VRmD+hScISxb5EiHLEHXZywiZJhMIh8J5+bUNfFExpdlKOjhzFp+xtJorqujNyHb/T3fIcmDyJZS/+yU6Lb0nwopv0Y8L2rneU3P/COZM6r5KwIDAQABo1AwTjAdBgNVHQ4EFgQU5zR2gHxHCci97tfB6t3B+C2uWVswHwYDVR0jBBgwFoAU5zR2gHxHCci97tfB6t3B+C2uWVswDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQBVXBWykbbcCUDuFS5PTVZCwYk1M0AUn6d3h/R7kdzUGJMAQ/Rj5iQ9ce30hjOVLZIN1kvwElXnlW27JzM3EOjuZOrwnw73SCHn69vd7cJM5eL+A51TfsF7Pi9IEfHSZsIYJM/Dz4yZTDsNt1t28B/4JaYp6GVS7rFLE+LshGsr/g==
+      # Production
+      cert: 'MIICRjCCAa+gAwIBAgIJANsHFa8gUEnuMA0GCSqGSIb3DQEBBQUAMDwxEDAOBgNVBAMMB3NzbyBpZHAxDDAKBgNVBAsMA3ByZDENMAsGA1UECgwEdmlhYTELMAkGA1UEBhMCYmUwHhcNMTUxMjIyMDkzMjIyWhcNMjAxMTI1MDkzMjIyWjA8MRAwDgYDVQQDDAdzc28gaWRwMQwwCgYDVQQLDANwcmQxDTALBgNVBAoMBHZpYWExCzAJBgNVBAYTAmJlMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDB/57qBLfFQL5uC2LkXe8gsatQhGC9vRN9Ecwj31rjn4lZejmgVfscTI7KI7ep8+qz0degLPOeNXyI6HZi6wSiIpSsKj4TfdbGx7RQyRHJnRy8fo1vP07P0EoDgJd2cPFqEiYPd2k8ETuXgdBM6GxuLsFVMnQJoU3neeGKxU+ZFwIDAQABo1AwTjAdBgNVHQ4EFgQUNg5PvfFwdRkA2G+SOJIxo59jDjAwHwYDVR0jBBgwFoAUNg5PvfFwdRkA2G+SOJIxo59jDjAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQBvs5jDPIJm8OCTBQmzDMbK/HlTR1iaRFCI8DVhsljWtzSUa4m63ZopK3fbvS3mqlpWFBCrkV6b4NWh7ZA+ReWtB77qYMZ15GB1S5LmYA/jUuzacKvPcFlsbbrsI4oelRLlccZCSUv6LsHY1TXM+T5psoabFrgGEhij1yf5zbpJvw=='
+      # QAS
+      #cert: MIICRjCCAa+gAwIBAgIJALRK8eVTg5r0MA0GCSqGSIb3DQEBBQUAMDwxEDAOBgNVBAMMB3NzbyBpZHAxDDAKBgNVBAsMA3FhczENMAsGA1UECgwEdmlhYTELMAkGA1UEBhMCYmUwHhcNMTUxMjIxMTEyNjAwWhcNMjAxMTI0MTEyNjAwWjA8MRAwDgYDVQQDDAdzc28gaWRwMQwwCgYDVQQLDANxYXMxDTALBgNVBAoMBHZpYWExCzAJBgNVBAYTAmJlMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDNP1eVJIdVWXzHeDymWAz5O45YncphIl+V8daO/ltDB8v1OLwET3365Z5CUUO1VRmD+hScISxb5EiHLEHXZywiZJhMIh8J5+bUNfFExpdlKOjhzFp+xtJorqujNyHb/T3fIcmDyJZS/+yU6Lb0nwopv0Y8L2rneU3P/COZM6r5KwIDAQABo1AwTjAdBgNVHQ4EFgQU5zR2gHxHCci97tfB6t3B+C2uWVswHwYDVR0jBBgwFoAU5zR2gHxHCci97tfB6t3B+C2uWVswDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQBVXBWykbbcCUDuFS5PTVZCwYk1M0AUn6d3h/R7kdzUGJMAQ/Rj5iQ9ce30hjOVLZIN1kvwElXnlW27JzM3EOjuZOrwnw73SCHn69vd7cJM5eL+A51TfsF7Pi9IEfHSZsIYJM/Dz4yZTDsNt1t28B/4JaYp6GVS7rFLE+LshGsr/g==
 
       validateInResponseTo: false
       disableRequestedAuthnContext: true

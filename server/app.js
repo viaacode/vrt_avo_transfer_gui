@@ -47,7 +47,7 @@ module.exports = function (config, request) {
     }
     // - api
     var apiRouter = express.Router();
-    if (config.passport) {
+    if (config.authenticationEnabled) {
         console.log('Authentication is ON');
         require('./routes/authentication')(app, config, passport);
         apiRouter.use('/api', authMiddleware.errorCode); // (error 401 when not authenticated)
@@ -60,7 +60,7 @@ module.exports = function (config, request) {
     // - user info
     require('./routes/saml-properties-for-frontend')(app, config);
     // - front-end templates (redirect to login when not authenticated)
-    require('./routes/front-end')(app, config, config.passport ? authMiddleware.redirect : authMiddleware.ignore);
+    require('./routes/front-end')(app, config, config.authenticationEnabled ? authMiddleware.redirect : authMiddleware.ignore);
     // - static files in the public folder
     app.use('/public', express.static(pathFromApp('public')));
     //endregion
