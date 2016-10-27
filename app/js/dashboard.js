@@ -43,8 +43,12 @@ $(document).ready(function () {
                             self.skryvBriefingTitel = data.data.briefing_titel;
                             self.skryvMediaIdsVideo = data.data.media_ids_video;
                             self.skryvMediaIdsAudio = data.data.media_ids_audio;
-                            $('.skryvOutcome').css("visibility", 'visible');
-                            $('.submitbtn').css("visibility", 'visible');
+                            // Don't show button when no videos and no audios
+                            if (self.skryvMediaIdsVideo.length > 0 || self.skryvMediaIdsAudio.length > 0) {
+                                $('.submitbtn').css("visibility", 'visible');
+                                $('.skryvOutcome').css("visibility", 'visible');
+                                $('.error').text('Briefing bevat geen items');
+                            }
                         })
                         .fail(function() {
                             $('.error').text('Briefing ID niet gevonden in Skryv.');
