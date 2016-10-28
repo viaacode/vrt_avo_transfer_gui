@@ -47,6 +47,7 @@ $(document).ready(function () {
                             if (self.skryvMediaIdsVideo.length > 0 || self.skryvMediaIdsAudio.length > 0) {
                                 $('.submitbtn').css("visibility", 'visible');
                                 $('.skryvOutcome').css("visibility", 'visible');
+                            } else {
                                 $('.error').text('Briefing bevat geen items');
                             }
                         })
