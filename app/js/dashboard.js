@@ -63,7 +63,7 @@ $(document).ready(function () {
                     briefing_id: this.skryvBriefingId,
                     briefing_titel: this.skryvBriefingTitel,
                     uitvoerder: this.skryvUitvoerder,
-                    toegevoegd_door: mijnVIAA.username,
+                    toegevoegd_door: vat.username,
                     media_ids: this.skryvMediaIdsVideo.concat(this.skryvMediaIdsAudio)
                 };
                 console.log(postobj);
