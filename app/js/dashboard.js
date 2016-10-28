@@ -27,6 +27,7 @@ $(document).ready(function () {
                 $(e.target).closest('.briefingItem').find('.briefing_expand span').toggleClass('icon-up-open');
             },
             validate: function() {
+                this.resetBriefingInput();
                 var briefing_id = $('#briefing_id').val();
                 var self = this;
 
