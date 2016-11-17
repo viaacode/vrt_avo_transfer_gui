@@ -13,8 +13,8 @@ module.exports = function (app, config) {
         extra: ''
       },
       toEndpoint: {
-        title: config.muleHost + value,
-        url: config.muleHost + value,
+        title: config.briefingAPI + value,
+        url: config.briefingAPI + value,
         extra: config.dummyRequest ? '(mocked with dummy data)' : ''
       }
     };

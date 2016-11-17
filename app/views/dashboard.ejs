@@ -61,6 +61,55 @@
             <input class="submitbtn" type="button" value="Start ophaling bij VRT" @click="startFetch">
         </form>
     </div>
+    <div class="addItem-content" id="addSubtitle">
+        <h2>Ondertitel toevoegen</h2>
+        <a href="#" class="close_x" onclick="hideAddSubtitleContent()">x</a>
+
+        <form>
+            <label for="subtitle-title"><strong>Titel</strong></label>
+            <p>
+                <p class="indentleft" id="subtitle-title">Onbekend</p>
+            </p>
+            <label for="new_pid"><strong>AvO PID</strong></label>
+            <p>
+                <input class="indentleft" type="text" autofocus autocomplete="off" placeholder="AvO PID" id="new_pid" />
+            </p>
+            <label for="mediamosa_id"><strong>Mediamosa ID</strong></label>
+            <p>
+                <input class="indentleft" type="text" autocomplete="off" placeholder="Mediamosa ID" id="mediamosa_id" />
+            </p>
+            <label for="starttime"><strong>Starttijd</strong></label>
+            <p>
+                <input class="indentleft" type="text" autocomplete="off" placeholder="Starttijd" id="starttime" />
+            </p>
+            <label for="endtime"><strong>Eindtijd</strong></label>
+            <p>
+                <input class="indentleft" type="text" autocomplete="off" placeholder="Eindtijd" id="endtime" />
+            </p>
+            <label for="email"><strong>Email</strong></label>
+            <p>
+                <input class="indentleft" type="text" autocomplete="off" placeholder="Email" id="email" value="<%= emailAddress %>">
+            </p>
+            <p>
+                <input class="submitbtn" type="button" value="Start ophaling bij VRT" @click="requestSubtitle">
+            </p>
+            <div class="skryvOutcome">
+                <p>Uitvoerder: {{ skryvUitvoerder }}</p>
+                <p>Titel: {{ skryvBriefingTitel }}</p>
+
+                <p>Bevat {{ skryvMediaIdsVideo.length + skryvMediaIdsAudio.length }} items:</p>
+                <ul v-for="mediaItem in skryvMediaIdsVideo">
+                    <li>{{ mediaItem.media_id }} [video]</li>
+                </ul>
+                <ul v-for="mediaItem in skryvMediaIdsAudio">
+                    <li>{{ mediaItem.media_id }} [audio]</li>
+                </ul>
+            </div>
+            <p class="error"></p>
+            <p class="success"></p>
+
+        </form>
+    </div>
 
     <div class="toast contentbox">
     </div>

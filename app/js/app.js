@@ -54,12 +54,24 @@ function showmenu() {
 }
 
 function showAddItemContent() {
-    $('.addItem-content').fadeIn(500);
+    $('#addItem').fadeIn(500);
+    $('#form-background').fadeIn(500);
+}
+
+function showAddSubtitleContent() {
+    $('#addSubtitle').fadeIn(500);
     $('#form-background').fadeIn(500);
 }
 
 function hideAddItemContent() {
-    $('.addItem-content').fadeOut(500);
+    $('#addItem').fadeOut(500);
+    $('#form-background').fadeOut(500);
+    $('.error').empty();
+    $('.success').empty();
+}
+
+function hideAddSubtitleContent() {
+    $('#addSubtitle').fadeOut(500);
     $('#form-background').fadeOut(500);
     $('.error').empty();
     $('.success').empty();

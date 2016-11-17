@@ -6,6 +6,8 @@ $(document).ready(function () {
 
     var runningAjaxCalls = [];
     var mediaIdsDelimiter = ',';
+    var pidRegex = /^([A-Za-z0-9]{10})$/;
+    var pidHolder = '';
 
     new Vue({
         el: '#briefingApp',
@@ -84,7 +86,8 @@ $(document).ready(function () {
                 this.skryvBriefingTitel = "";
                 this.skryvMediaIdsVideo = [];
                 this.skryvMediaIdsAudio = [];
-            }
+            },
+            requestSubtitle: requestSubtitle
         },
         filters: {
             formatDate: function(date) {
@@ -119,5 +122,55 @@ $(document).ready(function () {
             // else $(this).hide();
         });
     });
+
+    $('#new_pid').on('blur', getPidInformation);
+    $('#new_pid').on('input', getPidInformation);
+
+    function getPidInformation() {
+        var pid = $('#new_pid').val();
+            if (pid != pidHolder) {
+            pidHolder = pid;
+            $('#starttime').val('');
+            $('#endtime').val('');
+            $('#subtitle-title').text('Onbekend');
+            if (pidRegex.test(pid)) {
+                var url = '/api/subtitles/' + pid;
+                runningAjaxCalls.push(ajaxcall(url, function (err, result) {
+                    if (err || result.status != 'OK') {
+                        $('.error').text('Mislukt om informatie op te halen van deze PID. Controleer of deze bestaat');
+                    }
+                    else {
+                        errors = [];
+                        if (result.data.start_time) $('#starttime').val(result.data.start_time);
+                        if (result.data.end_time) $('#endtime').val(result.data.end_time);
+                        if (result.data.title) $('#subtitle-title').text(result.data.title);
+                        $('.submitbtn').css("visibility", 'visible');
+                        console.log('Result: ', result);
+                    }
+                }));
+            }
+        }
+    }
+
+    function requestSubtitle() {
+        console.log('Requesting subtitle from Mule');
+        var postobj =
+        {
+            new_pid: $('#new_pid').val(),
+            mediamosa_id: $('#mediamosa_id').val(),
+            starttime: $('#starttime').val(),
+            endtime: $('#endtime').val(),
+            email: $('#email').val()
+        };
+        console.log(postobj);
+        $.post('/api/subtitles/', JSON.stringify(postobj))
+            .done(function(data) {
+                $('.success').text('Subtitle is opgevraagd!');
+            })
+            .fail(function() {
+                $('.error').text('Mislukt om subtitle op te vragen. Contacteer @brechtvdv');
+            });
+
+    }
 
 });

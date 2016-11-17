@@ -4,8 +4,10 @@ var jsend = require('../util/jsend');
 
 module.exports = function (router, config, request) {
     router.get('/api/briefings/:id?', getBriefings);
+    router.get('/api/subtitles/:pid', getSubtitleInfo)
     router.post('/api/briefings', addBriefing);
     router.post('/api/briefings/validate', validateBriefing);
+    router.post('/api/subtitles/', requestSubtitle);
 
 
     function addBriefing(req, res, next) {
@@ -24,7 +26,7 @@ module.exports = function (router, config, request) {
         }
 
         // briefing verzenden naar mule API
-        var url = config.muleHost + '/briefings/' + briefing_id;
+        var url = config.briefingAPI + '/briefings/' + briefing_id;
 
         var headers = {
             'User-Agent':       'Super Agent/0.0.1',
@@ -63,7 +65,7 @@ module.exports = function (router, config, request) {
 
     function getBriefings(req, res, next) {
         if (!req.params.id) req.params.id = '';
-        var url = config.muleHost + '/briefings/' + req.params.id;
+        var url = config.briefingAPI + '/briefings/' + req.params.id;
 
         forwardRequestCall(url, res, next);
 
@@ -110,8 +112,58 @@ module.exports = function (router, config, request) {
         //     .send(jsend.success(data));
     }
 
+    function getSubtitleInfo(req, res, next) {
+        console.log('req.params.pid = ', req.params.pid);
+        if (req.params.pid) {
+            var url = config.subtitleAPI + '/api/avo_import_export/' + req.params.pid;
+            console.log('url = ', url);
+            forwardRequestCall(url, res, next);
+        }
+    }
+
+    function requestSubtitle(req, res, next) {
+        var obj = JSON.parse(Object.keys(req.body)[0]);
+        var url = config.subtitleAPI + '/api/subtitle/export';
+
+        var headers = {
+            'User-Agent':       'Super Agent/0.0.1',
+            'Content-Type':     'application/json',
+        };
+
+        var postobj =
+            {
+                new_pid: obj.new_pid,
+                mediamosa_id: obj.mediamosa_id,
+                starttime: obj.starttime,
+                endtime: obj.endtime,
+                email: obj.email
+            };
+
+        var options = {
+            url: url,
+            method: 'POST',
+            headers: headers,
+            json: obj
+        };
+
+        request(options, function (error, response, body) {
+            if (body && body.code == 500) {
+                res.
+                append('Content-Type', 'application/json')
+                    .send(jsend.error(body.code, body.error));
+            }
+            else if (body && !error && response.statusCode == 200) {
+                // Print out the response body
+                res
+                    .append('Content-Type', 'application/json')
+                    .send(jsend.success(body));
+            }
+        });
+
+    }
+
     function validateBriefing(req, res, next) {
-        var url = config.muleHost + '/briefings/validate';
+        var url = config.briefingAPI + '/briefings/validate';
 
         console.log('executing forwardRequestCall(' + url + ')');
 
@@ -126,7 +178,7 @@ module.exports = function (router, config, request) {
             method: 'POST',
             headers: headers,
             json: req.body
-        }
+        };
 
         request(options, function (error, response, body) {
             if (body && body.code == 500) {

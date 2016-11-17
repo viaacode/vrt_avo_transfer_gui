@@ -1,12 +1,15 @@
-muleHost: 'http://do-prd-esb-01.do.viaa.be:10002'
+briefingAPI: 'http://do-prd-esb-01.do.viaa.be:10002'
+subtitleAPI: 'http://do-prd-esb-01.do.viaa.be:10004'
 endpoints:
   briefings: '/api/briefings'
   addbriefing: '/api/briefings/add'
+  subtitles: '/api/subtitles'
+  addSubtitle: '/api/subtitles/add'
 
 # general app settings
 app: # used in console to tell which app is started
   name: 'vat.VIAA'
-  port: 80
+  port: 8080
   sessionSecret: 'vatetc'
 
 # toggle to show api links on /api/docs
@@ -21,7 +24,7 @@ authenticationEnabled: false
 passport:
   strategy: 'saml'
   saml:
-    # URL that goes from the Identity Provider -> Service Provider
+      # URL that goes from the Identity Provider -> Service Provider
       callbackUrl: 'vat.viaa.be/login/callback'
 
       # URL that goes from the Service Provider -> Identity Provider
