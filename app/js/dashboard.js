@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     var runningAjaxCalls = [];
     var mediaIdsDelimiter = ',';
-    var pidRegex = /^([A-Za-z0-9]{10})$/;
+    var pidRegex = /^([A-Za-z0-9]{10,12})$/;
     var pidHolder = '';
 
     new Vue({
@@ -128,6 +128,7 @@ $(document).ready(function () {
 
     function getPidInformation() {
         var pid = $('#new_pid').val();
+        console.log('pid: ', pid);
             if (pid != pidHolder) {
             pidHolder = pid;
             $('#starttime').val('');
@@ -144,6 +145,7 @@ $(document).ready(function () {
                         if (result.data.start_time) $('#starttime').val(result.data.start_time);
                         if (result.data.end_time) $('#endtime').val(result.data.end_time);
                         if (result.data.title) $('#subtitle-title').text(result.data.title);
+                        $('.error').text('');
                         $('.submitbtn').css("visibility", 'visible');
                         console.log('Result: ', result);
                     }
@@ -167,8 +169,9 @@ $(document).ready(function () {
             .done(function(data) {
                 $('.success').text('Subtitle is opgevraagd!');
             })
-            .fail(function() {
-                $('.error').text('Mislukt om subtitle op te vragen. Contacteer @brechtvdv');
+            .fail(function(err) {
+                var response = JSON.parse(err);
+                $('.error').text('Mislukt om subtitle op te vragen. Contacteer @brechtvdv\nError: ' + response.message);
             });
 
     }
