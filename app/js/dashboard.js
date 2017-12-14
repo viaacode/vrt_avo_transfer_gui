@@ -14,7 +14,8 @@ $(document).ready(function () {
             skryvUitvoerder: "",
             skryvBriefingTitel: "",
             skryvMediaIdsVideo: [],
-            skryvMediaIdsAudio: []
+            skryvMediaIdsAudio: [],
+            skryvViaaPids: []
         },
         created: function () {
             refreshView(this);
@@ -44,8 +45,9 @@ $(document).ready(function () {
                             self.skryvBriefingTitel = data.data.briefing_titel;
                             self.skryvMediaIdsVideo = data.data.media_ids_video;
                             self.skryvMediaIdsAudio = data.data.media_ids_audio;
-                            // Don't show button when no videos and no audios
-                            if (self.skryvMediaIdsVideo.length > 0 || self.skryvMediaIdsAudio.length > 0) {
+                            self.skryvViaaPids = data.data.viaa_pids;
+                            // Don't show button when no VRT videos, no VRT audios and no VIAA PIDs
+                            if (self.skryvMediaIdsVideo.length > 0 || self.skryvMediaIdsAudio.length > 0 || self.skryvViaaPids.length > 0) {
                                 $('.submitbtn').css("visibility", 'visible');
                                 $('.skryvOutcome').css("visibility", 'visible');
                             } else {
@@ -64,6 +66,7 @@ $(document).ready(function () {
                     briefing_titel: this.skryvBriefingTitel.replace('&', 'en'),
                     uitvoerder: this.skryvUitvoerder,
                     toegevoegd_door: vat.username,
+                    viaa_pids: this.skryvViaaPids,
                     media_ids: this.skryvMediaIdsVideo.concat(this.skryvMediaIdsAudio)
                 };
                 console.log(postobj);
@@ -84,6 +87,7 @@ $(document).ready(function () {
                 this.skryvBriefingTitel = "";
                 this.skryvMediaIdsVideo = [];
                 this.skryvMediaIdsAudio = [];
+                this.skryvViaaPids = [];
             }
         },
         filters: {

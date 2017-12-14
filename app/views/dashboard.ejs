@@ -23,9 +23,10 @@
             <div class="briefing_content">
                 <p>Toegevoegd op {{ briefing.reception_date | formatDate }}</p>
                 <table>
-                    <tr v-for="item in briefing.media_ids">
+                    <tr v-for="item in briefing.items">
                         <td></td>
                         <td>{{ item.media_id }}</td>
+                        <td>{{ item.pid }}</td>
                         <td>{{ item.media_type }}</td>
                         <td>{{ item.status }}</td>
                     </tr>
@@ -48,12 +49,15 @@
                 <p>Uitvoerder: {{ skryvUitvoerder }}</p>
                 <p>Titel: {{ skryvBriefingTitel }}</p>
 
-                <p>Bevat {{ skryvMediaIdsVideo.length + skryvMediaIdsAudio.length }} items:</p>
+                <p>Bevat {{ skryvMediaIdsVideo.length + skryvMediaIdsAudio.length + skryvViaaPids.length }} items:</p>
                 <ul v-for="mediaItem in skryvMediaIdsVideo">
                     <li>{{ mediaItem.media_id }} [video]</li>
                 </ul>
                 <ul v-for="mediaItem in skryvMediaIdsAudio">
                     <li>{{ mediaItem.media_id }} [audio]</li>
+                </ul>
+                <ul v-for="mediaItem in skryvViaaPids">
+                    <li>{{ mediaItem.pid }} [unknown]</li>
                 </ul>
             </div>
             <p class="error"></p>

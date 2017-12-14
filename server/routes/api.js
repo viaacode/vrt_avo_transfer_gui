@@ -16,11 +16,16 @@ module.exports = function (router, config, request) {
         var uitvoerder = obj.uitvoerder;
         var toegevoegd_door = obj.toegevoegd_door;
         var media_ids = obj.media_ids;
+        var viaa_pids = obj.viaa_pids;
 
         console.log("post received: " + briefing_id + ", "  + briefing_titel + ", " + uitvoerder);
-        console.log("Media ids");
+        console.log("Media ids:");
         for(var i = 0; i < media_ids.length; i++) {
             console.log(media_ids[i].media_id + ' [' + media_ids[i].media_type + ']');
+        }
+        console.log("VIAA PIDs:");
+        for(var i = 0; i < viaa_pids.length; i++) {
+            console.log(viaa_pids[i].pid + ' [' + viaa_pids[i].media_type + ']');
         }
 
         // briefing verzenden naar mule API
@@ -36,7 +41,8 @@ module.exports = function (router, config, request) {
                 "briefing_titel" : briefing_titel,
                 "uitvoerder" :  uitvoerder,
                 "toegevoegd_door" : toegevoegd_door,
-                "media_ids" : media_ids
+                "media_ids" : media_ids,
+                "viaa_pids": viaa_pids
             };
 
         var options = {
