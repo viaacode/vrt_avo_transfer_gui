@@ -63,7 +63,7 @@ $(document).ready(function () {
 
                 var postobj = {
                     briefing_id: this.skryvBriefingId,
-                    briefing_titel: this.skryvBriefingTitel.replace('&', 'en'),
+                    briefing_titel: this.skryvBriefingTitel.replace(RegExp('&', "g"), 'en'),
                     uitvoerder: this.skryvUitvoerder,
                     toegevoegd_door: vat.username,
                     viaa_pids: this.skryvViaaPids,
