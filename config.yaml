@@ -1,4 +1,4 @@
-muleHost: 'http://do-prd-esb-01.do.viaa.be:10002'
+muleHost: 'http://do-prd-esb-02.do.viaa.be:10002'
 endpoints:
   briefings: '/api/briefings'
   addbriefing: '/api/briefings/add'
