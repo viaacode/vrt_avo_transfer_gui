@@ -30,13 +30,15 @@ login:	check-env
 	oc new-project "${OC_PROJECT}" || oc project "${OC_PROJECT}"
 	sleep 4 && oc new-project "${OC_PROJECT}" || oc project "${OC_PROJECT}"
 	oc adm policy add-scc-to-user anyuid -n${OC_PROJECT} -z default
-
+login_docker:
+	docker login -p "${TOKEN}" -u unused ${oc_registry}
 clone:
 	cd /tmp && git clone  --single-branch -b ${BRANCH} "${REPO_URI}" 
 buildimage:
 	cd /tmp/${GIT_NAME}
 	docker build -t ${oc_registry}/${OC_PROJECT}/${APP_NAME}:${TAG} .
-
+push:	login_docker
+	docker push ${oc_registry}/${OC_PROJECT}/${APP_NAME}:${TAG}
 deploy:
 	oc apply -f openshift/vat-tmpl-dc.yaml
 	oc process -l APP=VAT -f openshift/vat-tmpl-dc.yaml 
@@ -45,5 +47,5 @@ deploy:
 
 clean:
 	rm -rf /tmp/${GIT_NAME}
-all:	clean commit clone login buildimage deploy clean
+all:	clean commit clone login buildimage push deploy clean
 

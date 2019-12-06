@@ -43,41 +43,70 @@ objects:
           ENV: ${ENV}
           component: frontend
       spec:
+
         containers:
-        - image: docker-registry.default.svc:5000/viaa-tools/vat:${ENV}
-          imagePullPolicy: Always
-          name: vat
-          envFrom:
-            - configMapRef:
-                name: vat-${ENV}
-          ports:
-          - containerPort: 1234
-            name: http
-            protocol: TCP
-          resources: {}
-          securityContext:
-            privileged: false
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
+            - envFrom:
+                - configMapRef:
+                    name: vat-qas
+            image: >-
+                docker-registry.default.svc:5000/viaa-tools/vat@sha256:bd3c48ee37e855d7b73980eaf927a83ad932a7517ef8c65fa93a176583146550
+            imagePullPolicy: Always
+            livenessProbe:
+                failureThreshold: 3
+                httpGet:
+                path: /
+                port: 8080
+                scheme: HTTP
+                initialDelaySeconds: 60
+                periodSeconds: 10
+                successThreshold: 1
+                timeoutSeconds: 12
+            name: vat
+            ports:
+                - containerPort: 8080
+                name: http
+                protocol: TCP
+            readinessProbe:
+                failureThreshold: 3
+                initialDelaySeconds: 50
+                periodSeconds: 10
+                successThreshold: 1
+                tcpSocket:
+                port: 8080
+                timeoutSeconds: 12
+            resources:
+                limits:
+                cpu: 300m
+                memory: 512Mi
+                requests:
+                cpu: 200m
+                memory: 164Mi
+            securityContext:
+                privileged: false
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         schedulerName: default-scheduler
         securityContext:
-          runAsUser: 1000
+            runAsUser: 101
         terminationGracePeriodSeconds: 10
     test: false
     triggers:
-    - type: ConfigChange
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-        - vat-${ENV}
-        from:
-          kind: ImageStreamTag
-          name: vat:latest
-          namespace: viaa-tools
-        lastTriggeredImage:
-      type: ImageChange
+        - imageChangeParams:
+            automatic: true
+            containerNames:
+            - vat
+            from:
+            kind: ImageStreamTag
+            name: 'vat:${ENV}'
+            namespace: viaa-tools
+            lastTriggeredImage: >-
+            docker-registry.default.svc:5000/viaa-tools/vat@sha256:bd3c48ee37e855d7b73980eaf927a83ad932a7517ef8c65fa93a176583146550
+        type: ImageChange
+        - type: ConfigChange
+        
+    
   status:
     availableReplicas: 0
     latestVersion: 0
@@ -99,9 +128,9 @@ objects:
   spec:
     ports:
     - name: http
-      port: 8000
+      port: 8080
       protocol: TCP
-      targetPort: 8000
+      targetPort: 8080
     selector:
       app: vat
       ENV: ${ENV}
@@ -112,4 +141,4 @@ objects:
     loadBalancer: {}
 parameters:
   - name: ENV
-    value: dev
+    value: qas
