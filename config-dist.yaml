@@ -1,0 +1,44 @@
+muleHost: ${muleHost}
+endpoints:
+  briefings: '/api/briefings'
+  addbriefing: '/api/briefings/add'
+
+# general app settings
+app: # used in console to tell which app is started
+  name: 'vat.VIAA'
+  port: 8080
+  sessionSecret: ${sessionSecret}
+
+# toggle to show api links on /api/docs
+showApiDocs: false
+# show extended error messages in api call responses
+showErrors: false
+# log errors in server console
+logErrors: false
+# settings for authentication
+authenticationEnabled: false
+
+passport:
+  strategy: 'saml'
+  saml:
+    # URL that goes from the Identity Provider -> Service Provider
+      callbackUrl: ${fqdn}/login/callback
+
+      # URL that goes from the Service Provider -> Identity Provider
+      #entryPoint: 'https://idp.viaa.be/saml2/idp/SSOService.php'
+      entryPoint: "https://${idp_fqdn}/saml2/idp/SSOService.php"
+
+      # Url to logout from the Identity Provider
+      # logoutUrl: 'https://idp.viaa.be/saml2/idp/SingleLogoutService.php'
+      logoutUrl: "https://${idp_fqdn}/saml2/idp/SingleLogoutService.php"
+
+      issuer: ${issuer}
+
+      identifierFormat: null          
+
+      # Identity Provider's public key
+      # Production
+      cert: ${idp_pub_crt}
+
+      validateInResponseTo: false
+      disableRequestedAuthnContext: true

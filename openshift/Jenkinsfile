@@ -1,0 +1,79 @@
+/* import shared library */
+@Library('jenkins-shared-libs')_
+def TEMPLATEPATH = 'https://raw.githubusercontent.com/viaacode/vrt_avo_transfer_gui/master/openshift/vat-tmpl-dc.yaml'
+def TEMPLATENAME = 'avo2-proxy'
+def TARGET_NS = 'sc-avo2'
+def templateSelector = openshift.selector( "template", "avo2-proxy")
+// NOTE, the "pipeline" directive/closure from the declarative pipeline syntax needs to include, or be nested outside,
+// and "openshift" directive/closure from the OpenShift Client Plugin for Jenkins.  Otherwise, the declarative pipeline engine
+// will not be fully engaged.
+pipeline {
+    agent {
+      node {
+
+        // spin up a pod to run this build on
+        label 'docker'
+      }
+    }
+    options {
+        // set a timeout of 20 minutes for this pipeline
+        timeout(time: 20, unit: 'MINUTES')
+    }
+    stages {
+        stage('preamble') {
+            steps {
+                script {
+                    echo "Running login script for the external docker agent"
+                    sh '''#!/bin/bash
+                    /usr/local/bin/agent-login.sh
+                   # oc process -p ENV=int -f openshift/proxy-cfg-tmpl.yaml | oc apply -f -
+                    oc create -f openshift/proxy-cfg-tmpl.yaml 2>/dev/null || oc replace  -f openshift/proxy-cfg-tmpl.yaml
+                    echo template for config maps added , add to project per env,  and fillin the vars
+                    '''
+                    }
+                    
+                
+            }
+        }
+        stage('Build Dockerfile in server dir') {
+            steps {
+                script {sh'''#!/bin/bash
+                cd server
+                 docker build  --no-cache \
+                 -t docker-registry-default.apps.do-prd-okp-m0.do.viaa.be/sc-avo2/avo2-proxy:`git describe --tags` . '''
+                }//end script
+                script {sh'''#!/bin/bash
+                 docker push docker-registry-default.apps.do-prd-okp-m0.do.viaa.be/sc-avo2/avo2-proxy:`git describe --tags` '''
+                 sh'''#!/bin/bash
+                 oc tag avo2-proxy:`git describe --tags` avo2-proxy:int
+                '''
+
+                        } // script
+            } // steps
+        } // stage
+        stage('Tag qas and prd') {
+     steps {
+     // input message: "tag image for pod prd?: avo2-proxy:prd. Approve?", id: "approval"
+         script {
+             openshift.withCluster() {
+                 openshift.withProject("sc-avo2") {
+                      echo "Tag "
+                      sh '''#/bin/bash
+                      oc -n sc-avo2  tag  avo2-proxy:`git describe --tags`  avo2-proxy:qas
+                      oc -n sc-avo2  tag  avo2-proxy:`git describe --tags`  avo2-proxy:prd
+                      
+                      '''
+                 }
+             }
+         } // script
+     } // steps
+ } // stage
+    } // stages
+    post {
+        always {
+            script {
+               slackNotifier(currentBuild.currentResult)
+            }
+        }
+    }
+} // pipeline

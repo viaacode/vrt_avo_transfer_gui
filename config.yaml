@@ -6,7 +6,7 @@ endpoints:
 # general app settings
 app: # used in console to tell which app is started
   name: 'vat.VIAA'
-  port: 80
+  port: 8080
   sessionSecret: 'vatetc'
 
 # toggle to show api links on /api/docs
