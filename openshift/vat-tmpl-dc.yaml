@@ -1,27 +1,57 @@
-apiVersion: v1
+apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
   creationTimestamp: null
-  name: vat
+  name: --name=test
 objects:
 - apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      git-branch: master
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"git-branch":"master"},"creationTimestamp":null,"labels":{"APP":"VAT","ENV":"qas","app":"vat","component":"frontend"},"name":"vat-qas","namespace":"viaa-tools"},"spec":{"ports":[{"name":"http","port":8080,"protocol":"TCP","targetPort":8080}],"selector":{"ENV":"qas","app":"vat","component":"frontend"},"sessionAffinity":"None","type":"ClusterIP"},"status":{"loadBalancer":{}}}
+    creationTimestamp: null
+    labels:
+      ENV: ${ENV}
+      app: vat
+      component: frontend
+    name: vat-${ENV}
+  spec:
+    ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      ENV: ${ENV}
+      app: vat
+      component: frontend
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: apps.openshift.io/v1
   kind: DeploymentConfig
   metadata:
     annotations:
       git-branch: master
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps.openshift.io/v1","kind":"DeploymentConfig","metadata":{"annotations":{"git-branch":"master"},"creationTimestamp":null,"generation":3,"labels":{"APP":"VAT","ENV":"qas","app":"vat","component":"frontend"},"name":"vat-qas","namespace":"viaa-tools"},"spec":{"replicas":1,"revisionHistoryLimit":2,"selector":{"ENV":"qas","app":"vat","component":"frontend"},"strategy":{"activeDeadlineSeconds":21600,"resources":{},"rollingParams":{"intervalSeconds":1,"maxSurge":"25%","maxUnavailable":"25%","timeoutSeconds":600,"updatePeriodSeconds":1},"type":"Rolling"},"template":{"metadata":{"annotations":{"git-branch":"master"},"creationTimestamp":null,"labels":{"ENV":"qas","app":"vat","component":"frontend"}},"spec":{"containers":[{"image":"docker-registry.default.svc:5000/viaa-tools/vat:qas","imagePullPolicy":"Always","name":"vat"}],"dnsPolicy":"ClusterFirst","envFrom":[{"configMapRef":{"name":"vat-qas"}}],"image":"docker-registry.default.svc:5000/viaa-tools/vat@sha256:bd3c48ee37e855d7b73980eaf927a83ad932a7517ef8c65fa93a176583146550","imagePullPolicy":"Always","livenessProbe":{"failureThreshold":3,"httpGet":null,"initialDelaySeconds":60,"path":"/","periodSeconds":10,"port":8080,"scheme":"HTTP","successThreshold":1,"timeoutSeconds":12},"name":"vat","ports":[{"containerPort":8080,"name":"http","protocol":"TCP"}],"readinessProbe":{"failureThreshold":3,"initialDelaySeconds":50,"periodSeconds":10,"port":8080,"successThreshold":1,"tcpSocket":null,"timeoutSeconds":12},"resources":{"cpu":"200m","limits":null,"memory":"164Mi","requests":null},"restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{"runAsUser":101},"terminationGracePeriodSeconds":10,"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File"}},"test":false,"triggers":[{"imageChangeParams":{"automatic":true,"containerNames":["vat"],"from":{"kind":"ImageStreamTag","name":"vat:qas","namespace":"viaa-tools"},"lastTriggeredImage":"docker-registry.default.svc:5000/viaa-tools/vat@sha256:bd3c48ee37e855d7b73980eaf927a83ad932a7517ef8c65fa93a176583146550"},"type":"ImageChange"},{"type":"ConfigChange"}]},"status":{"availableReplicas":0,"latestVersion":0,"observedGeneration":0,"replicas":0,"unavailableReplicas":0,"updatedReplicas":0}}
     creationTimestamp: null
-    generation: 3
+    generation: 9
     labels:
-      app: vat
+      APP: VAT
       ENV: ${ENV}
+      app: vat
       component: frontend
     name: vat-${ENV}
   spec:
     replicas: 1
     revisionHistoryLimit: 2
     selector:
-      app: vat
       ENV: ${ENV}
+      app: vat
       component: frontend
     strategy:
       activeDeadlineSeconds: 21600
@@ -39,74 +69,59 @@ objects:
           git-branch: master
         creationTimestamp: null
         labels:
-          app: vat
           ENV: ${ENV}
+          app: vat
           component: frontend
       spec:
-
         containers:
-            - envFrom:
-                - configMapRef:
-                    name: vat-qas
-            image: >-
-                docker-registry.default.svc:5000/viaa-tools/vat@sha256:bd3c48ee37e855d7b73980eaf927a83ad932a7517ef8c65fa93a176583146550
-            imagePullPolicy: Always
-            livenessProbe:
-                failureThreshold: 3
-                httpGet:
-                path: /
-                port: 8080
-                scheme: HTTP
-                initialDelaySeconds: 60
-                periodSeconds: 10
-                successThreshold: 1
-                timeoutSeconds: 12
-            name: vat
-            ports:
-                - containerPort: 8080
-                name: http
-                protocol: TCP
-            readinessProbe:
-                failureThreshold: 3
-                initialDelaySeconds: 50
-                periodSeconds: 10
-                successThreshold: 1
-                tcpSocket:
-                port: 8080
-                timeoutSeconds: 12
-            resources:
-                limits:
-                cpu: 300m
-                memory: 512Mi
-                requests:
-                cpu: 200m
-                memory: 164Mi
-            securityContext:
-                privileged: false
-            terminationMessagePath: /dev/termination-log
-            terminationMessagePolicy: File
+        - env:
+          - name: idp_fqdn
+            value: idp-qas.viaa.be
+          - name: sessionSecret
+            value: tediaozuzdjefhpdgcoyzgocuygzoucygozej&ygdoz&egdyuzegoug
+          - name: muleHost
+            value: http://do-qas-esb-02.do.viaa.be:10002
+          - name: idp_pub_crt
+            value: /Dz4yZTDsNt1t28B/+LshGsr/g==
+          - name: issuer
+            value: mijn-tst.viaa.be
+          envFrom:
+          - configMapRef:
+              name: vat-${ENV}
+          image: docker-registry.default.svc:5000/viaa-tools/vat@sha256:bd3c48ee37e855d7b73980eaf927a83ad932a7517ef8c65fa93a176583146550
+          imagePullPolicy: IfNotPresent
+          name: vat
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 300m
+              memory: 248Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
         dnsPolicy: ClusterFirst
         restartPolicy: Always
         schedulerName: default-scheduler
         securityContext:
-            runAsUser: 101
+          runAsUser: 101
         terminationGracePeriodSeconds: 10
     test: false
     triggers:
-        - imageChangeParams:
-            automatic: true
-            containerNames:
-            - vat
-            from:
-            kind: ImageStreamTag
-            name: 'vat:${ENV}'
-            namespace: viaa-tools
-            lastTriggeredImage: >-
-            docker-registry.default.svc:5000/viaa-tools/vat@sha256:bd3c48ee37e855d7b73980eaf927a83ad932a7517ef8c65fa93a176583146550
-        type: ImageChange
-        - type: ConfigChange
-        
-    
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+        - vat
+        from:
+          kind: ImageStreamTag
+          name: vat:${ENV}
+          namespace: viaa-tools
+        lastTriggeredImage: docker-registry.default.svc:5000/viaa-tools/vat@sha256:bd3c48ee37e855d7b73980eaf927a83ad932a7517ef8c65fa93a176583146550
+      type: ImageChange
+    - type: ConfigChange
   status:
     availableReplicas: 0
     latestVersion: 0
@@ -114,31 +129,6 @@ objects:
     replicas: 0
     unavailableReplicas: 0
     updatedReplicas: 0
-- apiVersion: v1
-  kind: Service
-  metadata:
-    annotations:
-      git-branch: master
-    creationTimestamp: null
-    labels:
-        app: vat
-        ENV: ${ENV}
-        component: frontend
-    name: vat-${ENV}
-  spec:
-    ports:
-    - name: http
-      port: 8080
-      protocol: TCP
-      targetPort: 8080
-    selector:
-      app: vat
-      ENV: ${ENV}
-      component: frontend
-    sessionAffinity: None
-    type: ClusterIP
-  status:
-    loadBalancer: {}
 parameters:
   - name: ENV
     value: qas
