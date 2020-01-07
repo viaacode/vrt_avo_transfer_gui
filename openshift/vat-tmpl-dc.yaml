@@ -2,7 +2,7 @@ apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
   creationTimestamp: null
-  name: --name=test
+  name: vat-gui
 objects:
 - apiVersion: v1
   kind: Service
